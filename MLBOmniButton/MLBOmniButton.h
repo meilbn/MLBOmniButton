@@ -15,6 +15,7 @@ typedef NS_ENUM(NSUInteger, MLBOmniButtonImageViewPosition) {
 	MLBOmniButtonImageViewPositionRight,  // ImageView 在 titleLabel 右方 // The ImageView is right of the titleLabel
 };
 
+IB_DESIGNABLE
 @interface MLBOmniButton : UIButton
 
 /**
@@ -67,7 +68,7 @@ typedef NS_ENUM(NSUInteger, MLBOmniButtonImageViewPosition) {
  *  -----------------------------
  *
  */
-@property (nonatomic) MLBOmniButtonImageViewPosition mlb_imageViewPosition;
+@property (nonatomic) IBInspectable MLBOmniButtonImageViewPosition mlb_imageViewPosition;
 
 @end
 

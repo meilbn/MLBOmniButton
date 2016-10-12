@@ -42,10 +42,16 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
+- (instancetype)init {
+	if (self = [super init]) {
+		[self mlb_config];
+	}
 	
-	if (self) {
+	return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
 		[self mlb_config];
 	}
 	
@@ -53,19 +59,35 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-	self = [super initWithCoder:aDecoder];
-	
-	if (self) {
+	if (self = [super initWithCoder:aDecoder]) {
 		[self mlb_config];
 	}
 	
 	return self;
 }
 
+- (void)prepareForInterfaceBuilder {
+	[super prepareForInterfaceBuilder];
+	
+#if TARGET_INTERFACE_BUILDER
+	[self mlb_render];
+#endif
+}
+
+#pragma mark - Setter
+
+- (void)setMlb_imageViewPosition:(MLBOmniButtonImageViewPosition)mlb_imageViewPosition {
+	if (_mlb_imageViewPosition != mlb_imageViewPosition) {
+		_mlb_imageViewPosition = mlb_imageViewPosition;
+		
+		[self setNeedsLayout];
+	}
+}
+
 #pragma mark - Private Methods
 
 - (void)mlb_config {
-//	NSLog(@"%@", NSStringFromSelector(_cmd));
+	NSLog(@"%@", NSStringFromSelector(_cmd));
 	_mlb_imageViewSize = CGSizeZero;
 	_mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
 	
@@ -79,10 +101,82 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 //	NSLog(@"_userSetsFrame = %@", _userSetSize == MLBBOOLTrue ? @"YES" : @"NO");
 }
 
+- (void)mlb_render {
+	[self setImage:[self imageForState:UIControlStateNormal] forState:UIControlStateNormal];
+	[self setImage:[self imageForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+	[self setImage:[self imageForState:UIControlStateSelected] forState:UIControlStateSelected];
+	[self setImage:[self imageForState:UIControlStateDisabled] forState:UIControlStateDisabled];
+	
+	[self setTitle:[self titleForState:UIControlStateNormal] forState:UIControlStateNormal];
+	[self setTitle:[self titleForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+	[self setTitle:[self titleForState:UIControlStateSelected] forState:UIControlStateSelected];
+	[self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
+	
+	[self setTitleColor:[self titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
+	[self setTitleColor:[self titleColorForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+	[self setTitleColor:[self titleColorForState:UIControlStateSelected] forState:UIControlStateSelected];
+	[self setTitleColor:[self titleColorForState:UIControlStateDisabled] forState:UIControlStateDisabled];
+}
+
+- (CGSize)contentSize {
+	// ImageView
+	CGSize imageSize = CGSizeZero;
+	CGSize imageViewSize = CGSizeZero;
+	CGSize imageViewSizeWithEdgeInsets = CGSizeZero;
+	
+	// titleLabel
+	CGSize titleSize = CGSizeZero;
+	CGSize titleLabelSize = CGSizeZero;
+	CGSize titleLabelSizeWithEdgeInsets = CGSizeZero;
+	
+	// content
+	CGSize contentSize = CGSizeZero;
+	CGSize contentSizeWithEdgeInsets = CGSizeZero;
+	
+	if (CGSizeEqualToSize(_mlb_imageViewSize, CGSizeZero)) { // imageView size is not set
+		imageSize = self.currentImage.size;
+	} else { // imageView size is set
+		imageSize = _mlb_imageViewSize;
+	}
+	
+	imageViewSize = imageSize;
+	imageViewSizeWithEdgeInsets = CGSizeAddEdgeInsets(imageViewSize, self.imageEdgeInsets);
+	
+	titleSize = [self.currentTitle boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 1000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size;
+	titleLabelSize = titleSize;
+	titleLabelSizeWithEdgeInsets = CGSizeAddEdgeInsets(titleSize, self.titleEdgeInsets);
+	
+	// calculate content size
+	switch (_mlb_imageViewPosition) {
+		case MLBOmniButtonImageViewPositionTop:
+		case MLBOmniButtonImageViewPositionBottom: {
+			contentSize = CGSizeMake(MAX(imageViewSizeWithEdgeInsets.width, titleLabelSizeWithEdgeInsets.width), imageViewSizeWithEdgeInsets.height + titleLabelSizeWithEdgeInsets.height);
+			
+			imageViewSizeWithEdgeInsets.width = contentSize.width;
+			imageViewSize = CGSizeSubtractEdgeInsets(imageViewSizeWithEdgeInsets, self.imageEdgeInsets);
+			
+			titleLabelSizeWithEdgeInsets.width = contentSize.width;
+			titleSize = CGSizeSubtractEdgeInsets(titleLabelSizeWithEdgeInsets, self.titleEdgeInsets);
+			
+			break;
+		}
+		case MLBOmniButtonImageViewPositionLeft:
+		case MLBOmniButtonImageViewPositionRight: {
+			contentSize = CGSizeMake(imageViewSizeWithEdgeInsets.width + titleLabelSizeWithEdgeInsets.width, MAX(imageViewSizeWithEdgeInsets.height, titleLabelSizeWithEdgeInsets.height));
+			break;
+		}
+	}
+	
+	// calculate content bounds with contentEdgeInsets
+	contentSizeWithEdgeInsets = CGSizeAddEdgeInsets(contentSize, self.contentEdgeInsets);
+	
+	return contentSizeWithEdgeInsets;
+}
+
 #pragma mark - Parent Methods
 
 - (void)layoutSubviews {
-//	[super layoutSubviews];
+	[super layoutSubviews];
 	
 //	NSLog(@"-----------------------");
 //	NSLog(@"_mlb_imageViewPosition = %ld, self.frame = %@", _mlb_imageViewPosition, NSStringFromCGRect(self.frame));
@@ -213,8 +307,9 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 			if (_mlb_imageViewPosition == MLBOmniButtonImageViewPositionTop) {
 				switch (self.contentVerticalAlignment) {
 					case UIControlContentVerticalAlignmentCenter: {
-						imageViewCenter.y = CGRectGetHeight(self.frame) / 2.0 - self.imageEdgeInsets.bottom - imageSize.height / 2.0;
-						titleLabelCenter.y = CGRectGetHeight(self.frame) / 2.0 + self.titleEdgeInsets.top + titleSize.height / 2.0;
+						CGFloat contentTopToBottomHeight = imageSize.height + self.imageEdgeInsets.bottom + self.titleEdgeInsets.top + titleSize.height;
+						imageViewCenter.y = (CGRectGetHeight(self.frame) - contentTopToBottomHeight) / 2.0 + imageSize.height / 2.0;
+						titleLabelCenter.y = (CGRectGetHeight(self.frame) + contentTopToBottomHeight) / 2.0 - titleSize.height / 2.0;
 						break;
 					}
 					case UIControlContentVerticalAlignmentTop: {
@@ -234,8 +329,9 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 			} else {
 				switch (self.contentVerticalAlignment) {
 					case UIControlContentVerticalAlignmentCenter: {
-						imageViewCenter.y = CGRectGetHeight(self.frame) / 2.0 + self.imageEdgeInsets.bottom + imageSize.height / 2.0;
-						titleLabelCenter.y = CGRectGetHeight(self.frame) / 2.0 - self.titleEdgeInsets.top - titleSize.height / 2.0;
+						CGFloat contentTopToBottomHeight = titleSize.height + self.titleEdgeInsets.bottom + self.imageEdgeInsets.top + imageSize.height;
+						titleLabelCenter.y = (CGRectGetHeight(self.frame) - contentTopToBottomHeight) / 2.0 + titleSize.height / 2.0;
+						imageViewCenter.y = (CGRectGetHeight(self.frame) + contentTopToBottomHeight) / 2.0 - imageSize.height / 2.0;
 						break;
 					}
 					case UIControlContentVerticalAlignmentTop: {
@@ -341,226 +437,15 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 			break;
 		}
 	}
-	
-//	switch (_mlb_imageViewPosition) {
-//		case MLBOmniButtonImageViewPositionTop: {
-//			self.imageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
-//			self.titleLabel.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.titleEdgeInsets.left, CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.titleEdgeInsets.bottom - titleSize.height), titleSize};
-//			
-//			CGPoint imageViewCenter = self.imageView.center;
-//			CGPoint titleLabelCenter = self.titleLabel.center;
-//			
-//			switch (self.contentHorizontalAlignment) {
-//				case UIControlContentHorizontalAlignmentCenter: {
-//					imageViewCenter.x = self.contentEdgeInsets.left + self.imageEdgeInsets.left + imageViewSize.width / 2.0;
-//					titleLabelCenter.x = self.contentEdgeInsets.left + self.titleEdgeInsets.left + titleLabelSize.width / 2.0;;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentLeft:
-//					imageViewCenter.x = self.contentEdgeInsets.left + self.imageEdgeInsets.left + imageSize.width / 2.0;
-//					titleLabelCenter.x = self.contentEdgeInsets.left + self.titleEdgeInsets.left + titleSize.width / 2.0;;
-//					break;
-//				case UIControlContentHorizontalAlignmentRight: {
-//					imageViewCenter.x = CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.imageEdgeInsets.right - imageSize.width / 2.0;
-//					titleLabelCenter.x = CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.titleEdgeInsets.right - titleSize.width / 2.0;;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			switch (self.contentVerticalAlignment) {
-//				case UIControlContentVerticalAlignmentCenter: {
-//					imageViewCenter.y = CGRectGetHeight(self.frame) / 2.0 - self.imageEdgeInsets.bottom - imageSize.height / 2.0;
-//					titleLabelCenter.y = CGRectGetHeight(self.frame) / 2.0 + self.titleEdgeInsets.top + titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentTop: {
-//					imageViewCenter.y = self.contentEdgeInsets.top + self.imageEdgeInsets.top + imageSize.height / 2.0;
-//					titleLabelCenter.y = imageViewCenter.y + imageSize.height / 2.0 + self.titleEdgeInsets.top + titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentBottom: {
-//					titleLabelCenter.y = CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.titleEdgeInsets.bottom - titleSize.height / 2.0;
-//					imageViewCenter.y = titleLabelCenter.y - titleSize.height / 2.0 - self.titleEdgeInsets.top - imageSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			self.imageView.center = imageViewCenter;
-//			self.titleLabel.center = titleLabelCenter;
-//			
-//			break;
-//		}
-//		case MLBOmniButtonImageViewPositionLeft: {
-//			self.imageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
-//			self.titleLabel.frame = (CGRect){CGPointMake(CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.titleEdgeInsets.right - titleSize.width, self.contentEdgeInsets.top + self.titleEdgeInsets.top), titleSize};
-//			
-//			CGPoint imageViewCenter = self.imageView.center;
-//			CGPoint titleLabelCenter = self.titleLabel.center;
-//			
-//			switch (self.contentHorizontalAlignment) {
-//				case UIControlContentHorizontalAlignmentCenter: {
-//					imageViewCenter.x = CGRectGetWidth(self.frame) / 2.0 - self.imageEdgeInsets.right - imageSize.width / 2.0;
-//					titleLabelCenter.x = CGRectGetWidth(self.frame) / 2.0 + self.titleEdgeInsets.left + titleSize.width / 2.0;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentLeft:
-//					imageViewCenter.x = self.contentEdgeInsets.left + self.imageEdgeInsets.left + imageSize.width / 2.0;
-//					titleLabelCenter.x = imageViewCenter.x + imageSize.width / 2 + self.imageEdgeInsets.right + self.titleEdgeInsets.left + titleSize.width / 2.0;
-//					break;
-//				case UIControlContentHorizontalAlignmentRight: {
-//					titleLabelCenter.x = CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.titleEdgeInsets.right - titleSize.width / 2.0;
-//					imageViewCenter.x = titleLabelCenter.x - titleSize.width / 2.0 - self.titleEdgeInsets.left - self.imageEdgeInsets.right - imageSize.width / 2.0;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			switch (self.contentVerticalAlignment) {
-//				case UIControlContentVerticalAlignmentCenter: {
-//					imageViewCenter.y = self.contentEdgeInsets.top + self.imageEdgeInsets.top + imageViewSize.height / 2.0;
-//					titleLabelCenter.y = self.contentEdgeInsets.top + self.titleEdgeInsets.top + titleLabelSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentTop: {
-//					imageViewCenter.y = self.contentEdgeInsets.top + self.imageEdgeInsets.top + imageSize.height / 2.0;
-//					titleLabelCenter.y = self.contentEdgeInsets.top + self.titleEdgeInsets.top + titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentBottom: {
-//					imageViewCenter.y = CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.imageEdgeInsets.bottom - imageSize.height / 2.0;
-//					titleLabelCenter.y = CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.titleEdgeInsets.bottom - titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			self.imageView.center = imageViewCenter;
-//			self.titleLabel.center = titleLabelCenter;
-//			
-//			break;
-//		}
-//		case MLBOmniButtonImageViewPositionBottom: {
-//			self.imageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.imageEdgeInsets.bottom - imageSize.height), imageSize};
-//			self.titleLabel.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.titleEdgeInsets.left, self.contentEdgeInsets.top + self.titleEdgeInsets.top), titleSize};
-//			
-//			CGPoint imageViewCenter = self.imageView.center;
-//			CGPoint titleLabelCenter = self.titleLabel.center;
-//			
-//			switch (self.contentHorizontalAlignment) {
-//				case UIControlContentHorizontalAlignmentCenter: {
-//					imageViewCenter.x = self.contentEdgeInsets.left + self.imageEdgeInsets.left + imageViewSize.width / 2.0;
-//					titleLabelCenter.x = self.contentEdgeInsets.left + self.titleEdgeInsets.left + titleLabelSize.width / 2.0;;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentLeft:
-//					imageViewCenter.x = self.contentEdgeInsets.left + self.imageEdgeInsets.left + imageSize.width / 2.0;
-//					titleLabelCenter.x = self.contentEdgeInsets.left + self.titleEdgeInsets.left + titleSize.width / 2.0;;
-//					break;
-//				case UIControlContentHorizontalAlignmentRight: {
-//					imageViewCenter.x = CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.imageEdgeInsets.right - imageSize.width / 2.0;
-//					titleLabelCenter.x = CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.titleEdgeInsets.right - titleSize.width / 2.0;;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			switch (self.contentVerticalAlignment) {
-//				case UIControlContentVerticalAlignmentCenter: {
-//					imageViewCenter.y = CGRectGetHeight(self.frame) / 2.0 + self.imageEdgeInsets.bottom + imageSize.height / 2.0;
-//					titleLabelCenter.y = CGRectGetHeight(self.frame) / 2.0 - self.titleEdgeInsets.top - titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentTop: {
-//					titleLabelCenter.y = self.contentEdgeInsets.top + self.titleEdgeInsets.top + titleSize.height / 2.0;
-//					imageViewCenter.y = titleLabelCenter.y + titleSize.height / 2.0 + self.titleEdgeInsets.bottom + self.imageEdgeInsets.top + imageSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentBottom: {
-//					imageViewCenter.y = CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.imageEdgeInsets.bottom - imageSize.height / 2.0;
-//					titleLabelCenter.y = imageViewCenter.y - imageSize.height / 2.0 - self.imageEdgeInsets.top - self.titleEdgeInsets.bottom - titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			self.imageView.center = imageViewCenter;
-//			self.titleLabel.center = titleLabelCenter;
-//			
-//			break;
-//		}
-//		case MLBOmniButtonImageViewPositionRight: {
-//			self.imageView.frame = (CGRect){CGPointMake(CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.imageEdgeInsets.right - imageSize.width, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
-//			self.titleLabel.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.titleEdgeInsets.left, self.contentEdgeInsets.top + self.titleEdgeInsets.top), titleSize};
-//			
-//			CGPoint imageViewCenter = self.imageView.center;
-//			CGPoint titleLabelCenter = self.titleLabel.center;
-//			
-//			switch (self.contentHorizontalAlignment) {
-//				case UIControlContentHorizontalAlignmentCenter: {
-//					imageViewCenter.x = CGRectGetWidth(self.frame) / 2.0 + self.imageEdgeInsets.left + imageSize.width / 2.0;
-//					titleLabelCenter.x = CGRectGetWidth(self.frame) / 2.0 - self.titleEdgeInsets.right - titleSize.width / 2.0;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentLeft:
-//					titleLabelCenter.x = self.contentEdgeInsets.left + self.titleEdgeInsets.left + titleSize.width / 2.0;
-//					imageViewCenter.x = titleLabelCenter.x + titleSize.width / 2.0 + self.titleEdgeInsets.right + self.imageEdgeInsets.left + imageSize.width / 2.0;
-//					break;
-//				case UIControlContentHorizontalAlignmentRight: {
-//					imageViewCenter.x = CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.imageEdgeInsets.right - imageSize.width / 2.0;
-//					titleLabelCenter.x = imageViewCenter.x - imageSize.width / 2.0 - self.imageEdgeInsets.left - self.titleEdgeInsets.right - titleSize.width / 2.0;
-//					break;
-//				}
-//				case UIControlContentHorizontalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			switch (self.contentVerticalAlignment) {
-//				case UIControlContentVerticalAlignmentCenter: {
-//					imageViewCenter.y = self.contentEdgeInsets.top + self.imageEdgeInsets.top + imageViewSize.height / 2.0;
-//					titleLabelCenter.y = self.contentEdgeInsets.top + self.titleEdgeInsets.top + titleLabelSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentTop: {
-//					imageViewCenter.y = self.contentEdgeInsets.top + self.imageEdgeInsets.top + imageSize.height / 2.0;
-//					titleLabelCenter.y = self.contentEdgeInsets.top + self.titleEdgeInsets.top + titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentBottom: {
-//					imageViewCenter.y = CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.imageEdgeInsets.bottom - imageSize.height / 2.0;
-//					titleLabelCenter.y = CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.titleEdgeInsets.bottom - titleSize.height / 2.0;
-//					break;
-//				}
-//				case UIControlContentVerticalAlignmentFill: {
-//					break;
-//				}
-//			}
-//			
-//			self.imageView.center = imageViewCenter;
-//			self.titleLabel.center = titleLabelCenter;
-//			
-//			break;
-//		}
-//	}
 }
 
 - (CGSize)intrinsicContentSize {
 	NSLog(@"%@", NSStringFromSelector(_cmd));
-	return [super intrinsicContentSize];
+	
+	CGSize contentSize = [self contentSize];
+	NSLog(@"contentSize = %@", NSStringFromCGSize(contentSize));
+	
+	return contentSize;
 }
 
 @end
