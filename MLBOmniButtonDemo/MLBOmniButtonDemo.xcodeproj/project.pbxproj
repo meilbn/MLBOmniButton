@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21C6D797FDB6BC42A0FE533E /* libPods-MLBOmniButtonDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADA6FEAAD21ADE8B01D278E /* libPods-MLBOmniButtonDemo.a */; };
+		23237DA61DAE0E4800CFD293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23237DA51DAE0E4800CFD293 /* Main.storyboard */; };
 		235EAD2F1DACA5900093E71D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD2E1DACA5900093E71D /* main.m */; };
 		235EAD321DACA5900093E71D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD311DACA5900093E71D /* AppDelegate.m */; };
 		235EAD3A1DACA5900093E71D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 235EAD391DACA5900093E71D /* Assets.xcassets */; };
@@ -16,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23237DA51DAE0E4800CFD293 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		235EAD2A1DACA5900093E71D /* MLBOmniButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLBOmniButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		235EAD2E1DACA5900093E71D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		235EAD301DACA5900093E71D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -27,6 +30,9 @@
 		235EAD461DACA6D50093E71D /* MLBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBMainViewController.m; sourceTree = "<group>"; };
 		235EAD4B1DACA7BF0093E71D /* MLBOmniButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBOmniButton.h; sourceTree = "<group>"; };
 		235EAD4C1DACA7BF0093E71D /* MLBOmniButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBOmniButton.m; sourceTree = "<group>"; };
+		3ADA6FEAAD21ADE8B01D278E /* libPods-MLBOmniButtonDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MLBOmniButtonDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6F7FC6A80CE9B5C4EAA49CC /* Pods-MLBOmniButtonDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLBOmniButtonDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		E62E620EDD696B7B3EDBE1A3 /* Pods-MLBOmniButtonDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLBOmniButtonDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21C6D797FDB6BC42A0FE533E /* libPods-MLBOmniButtonDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +52,8 @@
 			children = (
 				235EAD2C1DACA5900093E71D /* MLBOmniButtonDemo */,
 				235EAD2B1DACA5900093E71D /* Products */,
+				867A4FF357AE884305A9C40C /* Pods */,
+				7745A52F72C7B4035C47392B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +72,7 @@
 				235EAD441DACA6C20093E71D /* ViewControllers */,
 				235EAD301DACA5900093E71D /* AppDelegate.h */,
 				235EAD311DACA5900093E71D /* AppDelegate.m */,
+				23237DA51DAE0E4800CFD293 /* Main.storyboard */,
 				235EAD391DACA5900093E71D /* Assets.xcassets */,
 				235EAD3B1DACA5900093E71D /* LaunchScreen.storyboard */,
 				235EAD2D1DACA5900093E71D /* Supporting Files */,
@@ -98,6 +108,23 @@
 			path = ../../MLBOmniButton;
 			sourceTree = "<group>";
 		};
+		7745A52F72C7B4035C47392B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3ADA6FEAAD21ADE8B01D278E /* libPods-MLBOmniButtonDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		867A4FF357AE884305A9C40C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C6F7FC6A80CE9B5C4EAA49CC /* Pods-MLBOmniButtonDemo.debug.xcconfig */,
+				E62E620EDD696B7B3EDBE1A3 /* Pods-MLBOmniButtonDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -105,9 +132,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 235EAD411DACA5900093E71D /* Build configuration list for PBXNativeTarget "MLBOmniButtonDemo" */;
 			buildPhases = (
+				10F368828FDBC3558B130E2F /* [CP] Check Pods Manifest.lock */,
 				235EAD261DACA5900093E71D /* Sources */,
 				235EAD271DACA5900093E71D /* Frameworks */,
 				235EAD281DACA5900093E71D /* Resources */,
+				5CD382F0EFFB51179AC8B889 /* [CP] Embed Pods Frameworks */,
+				31D20C8126899A7C90AA0347 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -155,12 +185,61 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23237DA61DAE0E4800CFD293 /* Main.storyboard in Resources */,
 				235EAD3D1DACA5900093E71D /* LaunchScreen.storyboard in Resources */,
 				235EAD3A1DACA5900093E71D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10F368828FDBC3558B130E2F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		31D20C8126899A7C90AA0347 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5CD382F0EFFB51179AC8B889 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		235EAD261DACA5900093E71D /* Sources */ = {
@@ -272,6 +351,7 @@
 		};
 		235EAD421DACA5900093E71D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6F7FC6A80CE9B5C4EAA49CC /* Pods-MLBOmniButtonDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MLBOmniButtonDemo/Info.plist;
@@ -283,6 +363,7 @@
 		};
 		235EAD431DACA5900093E71D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E62E620EDD696B7B3EDBE1A3 /* Pods-MLBOmniButtonDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MLBOmniButtonDemo/Info.plist;
@@ -311,6 +392,7 @@
 				235EAD431DACA5900093E71D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
