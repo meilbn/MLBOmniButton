@@ -1,5 +1,7 @@
 # MLBOmniButton
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/meilbn/MLBOmniButton/master/LICENSE)
+[![Language](https://img.shields.io/badge/language-Objective--C-brightgreen.svg)](https://developer.apple.com/swift)
+[![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://www.apple.com/nl/ios/)
 [![Support](https://img.shields.io/badge/support-iOS%207+%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)
 
 An Easy-to-use UIButton custom controls, including some of the common needs of the feature.
@@ -26,6 +28,13 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 
 ![][AutoLayout]
 
+## Features
+- [x] Easy to use
+- [x] Use with Storyboards, XIBs, Code
+- [] Can show badges
+- [] Design in Storyboard or XIB
+- [] Button's imageView support web image
+
 ## Installation
 ### CocoaPods
 Not yet supported.
@@ -46,7 +55,7 @@ This library requires ``iOS 7.0+`` 和 ``Xcode 7+``.
 ### Device
 iPhone 5S (iOS 8.3)
 
-~~iPhone 7 Plus (iOS 10.0.2)~~
+~~iPhone 7 Plus (iOS 10.0.2) Not yet tested~~
 
 ### Simulator
 iPhone 6 (iOS 9.3)
@@ -78,6 +87,13 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ### 使用 AutoLayout
 
 ![][AutoLayout]
+
+## 功能
+- [x] 使用简单
+- [x] 可以在 Storyboards、XIB 中使用，当然也可以通过代码创建
+- [] 可以显示 Badges
+- [] 可以在 Storyboard 或者 XIB 中配置自定义属性
+- [] 按钮的 imageView 支持显示网络图片
 
 ## 安装
 ### CocoaPods
