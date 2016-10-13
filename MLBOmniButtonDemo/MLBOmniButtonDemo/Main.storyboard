@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -16,12 +17,77 @@
                     <view key="view" contentMode="scaleToFill" id="ts5-U7-Qcl">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GF4-6s-F46" customClass="MLBOmniButton">
+                                <rect key="frame" x="240" y="20" width="120" height="66"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                <state key="normal" title="Button" image="icon_adding_user">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOV-Os-tEq" customClass="MLBOmniButton">
+                                <rect key="frame" x="252" y="557" width="95" height="35"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="8" maxX="5" maxY="5"/>
+                                <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <state key="normal" title="Button" image="icon_check_box_normal">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-s7-Zwt" customClass="MLBOmniButton">
+                                <rect key="frame" x="506" y="289" width="74" height="22"/>
+                                <state key="normal" title="Button" image="icon_check_box_selected">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7V3-Bk-IXj" customClass="MLBOmniButton">
+                                <rect key="frame" x="20" y="20" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="5B0-fb-Hvl"/>
+                                    <constraint firstAttribute="height" constant="40" id="XeV-cf-OhZ"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="icon_adding_user">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7F-sy-ut0" customClass="MLBOmniButton">
+                                <rect key="frame" x="20" y="94" width="158" height="50"/>
+                                <state key="normal" title="ButtonButton" image="icon_adding_user">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7V3-Bk-IXj" firstAttribute="top" secondItem="JJF-49-i0u" secondAttribute="bottom" id="6RT-3I-RSm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Iwt-s7-Zwt" secondAttribute="trailing" id="Fqj-Gl-xel"/>
+                            <constraint firstItem="bOV-Os-tEq" firstAttribute="centerX" secondItem="ts5-U7-Qcl" secondAttribute="centerX" id="KML-Z9-yFm"/>
+                            <constraint firstItem="GF4-6s-F46" firstAttribute="top" secondItem="ts5-U7-Qcl" secondAttribute="topMargin" constant="20" id="KoR-RY-95f"/>
+                            <constraint firstItem="MSM-l5-7fW" firstAttribute="top" secondItem="bOV-Os-tEq" secondAttribute="bottom" constant="8" id="M4L-Zq-cbn"/>
+                            <constraint firstItem="GF4-6s-F46" firstAttribute="centerX" secondItem="ts5-U7-Qcl" secondAttribute="centerX" id="PL5-Z5-suf"/>
+                            <constraint firstItem="Iwt-s7-Zwt" firstAttribute="centerY" secondItem="ts5-U7-Qcl" secondAttribute="centerY" id="Y8u-4Q-bLm"/>
+                            <constraint firstItem="J7F-sy-ut0" firstAttribute="leading" secondItem="ts5-U7-Qcl" secondAttribute="leadingMargin" id="dLX-s9-i6y"/>
+                            <constraint firstItem="7V3-Bk-IXj" firstAttribute="leading" secondItem="ts5-U7-Qcl" secondAttribute="leadingMargin" id="mWA-9D-S2F"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="J7F-sy-ut0" secondAttribute="trailing" constant="8" id="xT6-N9-abf"/>
+                            <constraint firstItem="J7F-sy-ut0" firstAttribute="top" secondItem="GF4-6s-F46" secondAttribute="bottom" constant="8" id="zxZ-Te-s0t"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonInIB" destination="GF4-6s-F46" id="0Mx-WK-P5M"/>
+                        <outlet property="buttonInIB1" destination="bOV-Os-tEq" id="dCf-2M-a9X"/>
+                        <outlet property="buttonInIBMultiLines" destination="J7F-sy-ut0" id="YLr-Mk-bM3"/>
+                        <outlet property="buttonInIBRight" destination="Iwt-s7-Zwt" id="86E-em-Ywu"/>
+                        <outlet property="buttonInIBWithSizeCons" destination="7V3-Bk-IXj" id="3jI-kd-bcm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBS-yd-oTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="783" y="409"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_adding_user" width="50" height="50"/>
+        <image name="icon_check_box_normal" width="20" height="20"/>
+        <image name="icon_check_box_selected" width="20" height="20"/>
+    </resources>
 </document>

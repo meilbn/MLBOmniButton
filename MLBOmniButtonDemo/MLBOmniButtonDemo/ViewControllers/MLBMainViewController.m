@@ -13,6 +13,7 @@
 @interface MLBMainViewController ()
 
 @property (strong, nonatomic) MLBOmniButton *omniButton;
+@property (strong, nonatomic) MLBOmniButton *omniButtonLeft;
 
 @property (strong, nonatomic) MLBOmniButton *button0;
 @property (strong, nonatomic) MLBOmniButton *button1;
@@ -20,6 +21,10 @@
 @property (strong, nonatomic) MLBOmniButton *button3;
 
 @property (weak, nonatomic) IBOutlet MLBOmniButton *buttonInIB;
+@property (weak, nonatomic) IBOutlet MLBOmniButton *buttonInIB1;
+@property (weak, nonatomic) IBOutlet MLBOmniButton *buttonInIBRight;
+@property (weak, nonatomic) IBOutlet MLBOmniButton *buttonInIBWithSizeCons;
+@property (weak, nonatomic) IBOutlet MLBOmniButton *buttonInIBMultiLines;
 
 @end
 
@@ -86,6 +91,7 @@
 //	[centerButton setTitle:@"button" forState:UIControlStateNormal];
 //	[centerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 //	[centerButton setImage:[UIImage imageNamed:@"icon_default_avatar_grey"] forState:UIControlStateNormal];
+//	[centerButton setBackgroundImage:[UIImage imageNamed:@"icon_adding_user"] forState:UIControlStateNormal];
 //	[self.view addSubview:centerButton];
 	
 //	_button3 = [self addbuttonWithFrame:CGRectZero bgColor:[UIColor greenColor] title:@"BUTTON" imageName:@"icon_adding_user" imageViewPosition:MLBOmniButtonImageViewPositionTop imageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5) titleEdgeInsets:UIEdgeInsetsMake(2, 2, 2, 2) contentEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
@@ -94,11 +100,22 @@
 //		make.top.equalTo(button2.mas_bottom).offset(5);
 //	}];
 	
-	_omniButton = [self addbuttonWithFrame:CGRectMake(0, 0, 250, 250) bgColor:[UIColor greenColor] title:@"BUTTON" imageName:@"icon_adding_user" imageViewPosition:MLBOmniButtonImageViewPositionBottom imageEdgeInsets:UIEdgeInsetsZero titleEdgeInsets:UIEdgeInsetsZero contentEdgeInsets:UIEdgeInsetsZero];
+	_omniButton = [self addbuttonWithFrame:CGRectMake(0, 0, 100, 100) bgColor:[UIColor greenColor] title:@"BUTTON" imageName:@"icon_adding_user" imageViewPosition:MLBOmniButtonImageViewPositionLeft imageEdgeInsets:UIEdgeInsetsZero titleEdgeInsets:UIEdgeInsetsZero contentEdgeInsets:UIEdgeInsetsZero];
+	[_omniButton setBackgroundImage:[UIImage imageNamed:@"icon_default_avatar_grey"] forState:UIControlStateNormal];
 //	_omniButton = [self addbuttonWithFrame:CGRectZero bgColor:[UIColor greenColor] title:@"BUTTON" imageName:@"icon_adding_user" imageViewPosition:MLBOmniButtonImageViewPositionTop imageEdgeInsets:UIEdgeInsetsZero titleEdgeInsets:UIEdgeInsetsZero contentEdgeInsets:UIEdgeInsetsZero];
 	
-//	_buttonInIB.mlb_imageViewPosition = MLBOmniButtonImageViewPositionTop;
+	_omniButtonLeft = [self addbuttonWithFrame:CGRectMake(0, CGRectGetMidY(self.view.frame), 0, 0) bgColor:[UIColor blueColor] title:@"BUTTON" imageName:@"icon_adding_user" imageViewPosition:MLBOmniButtonImageViewPositionLeft imageEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0) titleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0) contentEdgeInsets:UIEdgeInsetsZero];
+	
+	_buttonInIB.mlb_imageViewPosition = MLBOmniButtonImageViewPositionTop;
 //	_buttonInIB.imageView.backgroundColor = [UIColor blueColor];
+	
+	_buttonInIB1.mlb_imageViewPosition = MLBOmniButtonImageViewPositionBottom;
+	
+	_buttonInIBRight.mlb_imageViewPosition = MLBOmniButtonImageViewPositionRight;
+	
+	_buttonInIBWithSizeCons.mlb_imageViewPosition = MLBOmniButtonImageViewPositionBottom;
+	
+	[_buttonInIBMultiLines setTitle:@"ButtonButtonButtonButtonButtonButtonButtonButton" forState:UIControlStateNormal];
 }
 
 - (MLBOmniButton *)addbuttonWithFrame:(CGRect)frame bgColor:(UIColor *)bgColor title:(NSString *)title imageName:(NSString *)imageName imageViewPosition:(MLBOmniButtonImageViewPosition)imageViewPosition imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets titleEdgeInsets:(UIEdgeInsets)titleEdgeInsets contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets {
