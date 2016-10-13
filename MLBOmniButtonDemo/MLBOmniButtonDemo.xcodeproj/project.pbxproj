@@ -13,8 +13,9 @@
 		235EAD321DACA5900093E71D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD311DACA5900093E71D /* AppDelegate.m */; };
 		235EAD3A1DACA5900093E71D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 235EAD391DACA5900093E71D /* Assets.xcassets */; };
 		235EAD3D1DACA5900093E71D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 235EAD3B1DACA5900093E71D /* LaunchScreen.storyboard */; };
-		235EAD471DACA6D50093E71D /* MLBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD461DACA6D50093E71D /* MLBMainViewController.m */; };
 		235EAD4D1DACA7BF0093E71D /* MLBOmniButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD4C1DACA7BF0093E71D /* MLBOmniButton.m */; };
+		23A5F6BB1DAF5370005F0E15 /* MLBFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5F6BA1DAF5370005F0E15 /* MLBFrameViewController.m */; };
+		23A5F6BE1DAF5382005F0E15 /* MLBAutoLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5F6BD1DAF5382005F0E15 /* MLBAutoLayoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +27,12 @@
 		235EAD391DACA5900093E71D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		235EAD3C1DACA5900093E71D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		235EAD3E1DACA5900093E71D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		235EAD451DACA6D50093E71D /* MLBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBMainViewController.h; sourceTree = "<group>"; };
-		235EAD461DACA6D50093E71D /* MLBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBMainViewController.m; sourceTree = "<group>"; };
 		235EAD4B1DACA7BF0093E71D /* MLBOmniButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBOmniButton.h; sourceTree = "<group>"; };
 		235EAD4C1DACA7BF0093E71D /* MLBOmniButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBOmniButton.m; sourceTree = "<group>"; };
+		23A5F6B91DAF5370005F0E15 /* MLBFrameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBFrameViewController.h; sourceTree = "<group>"; };
+		23A5F6BA1DAF5370005F0E15 /* MLBFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBFrameViewController.m; sourceTree = "<group>"; };
+		23A5F6BC1DAF5382005F0E15 /* MLBAutoLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBAutoLayoutViewController.h; sourceTree = "<group>"; };
+		23A5F6BD1DAF5382005F0E15 /* MLBAutoLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBAutoLayoutViewController.m; sourceTree = "<group>"; };
 		3ADA6FEAAD21ADE8B01D278E /* libPods-MLBOmniButtonDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MLBOmniButtonDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F7FC6A80CE9B5C4EAA49CC /* Pods-MLBOmniButtonDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLBOmniButtonDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E62E620EDD696B7B3EDBE1A3 /* Pods-MLBOmniButtonDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLBOmniButtonDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,8 +95,10 @@
 		235EAD441DACA6C20093E71D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				235EAD451DACA6D50093E71D /* MLBMainViewController.h */,
-				235EAD461DACA6D50093E71D /* MLBMainViewController.m */,
+				23A5F6B91DAF5370005F0E15 /* MLBFrameViewController.h */,
+				23A5F6BA1DAF5370005F0E15 /* MLBFrameViewController.m */,
+				23A5F6BC1DAF5382005F0E15 /* MLBAutoLayoutViewController.h */,
+				23A5F6BD1DAF5382005F0E15 /* MLBAutoLayoutViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -246,8 +251,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23A5F6BB1DAF5370005F0E15 /* MLBFrameViewController.m in Sources */,
+				23A5F6BE1DAF5382005F0E15 /* MLBAutoLayoutViewController.m in Sources */,
 				235EAD4D1DACA7BF0093E71D /* MLBOmniButton.m in Sources */,
-				235EAD471DACA6D50093E71D /* MLBMainViewController.m in Sources */,
 				235EAD321DACA5900093E71D /* AppDelegate.m in Sources */,
 				235EAD2F1DACA5900093E71D /* main.m in Sources */,
 			);

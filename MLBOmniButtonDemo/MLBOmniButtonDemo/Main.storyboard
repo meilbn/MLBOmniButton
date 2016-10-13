@@ -1,93 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oGN-Wn-h3v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WRv-q7-Dg1">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
-        <scene sceneID="pbn-Y9-zvI">
+        <!--AutoLayout-->
+        <scene sceneID="4O9-fN-18a">
             <objects>
-                <viewController id="oGN-Wn-h3v" customClass="MLBMainViewController" sceneMemberID="viewController">
+                <viewController id="54F-cn-PFI" customClass="MLBAutoLayoutViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JJF-49-i0u"/>
-                        <viewControllerLayoutGuide type="bottom" id="MSM-l5-7fW"/>
+                        <viewControllerLayoutGuide type="top" id="GTN-ET-TAG"/>
+                        <viewControllerLayoutGuide type="bottom" id="cMG-uY-WwJ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ts5-U7-Qcl">
+                    <view key="view" contentMode="scaleToFill" id="Cnd-ER-Etp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GF4-6s-F46" customClass="MLBOmniButton">
-                                <rect key="frame" x="240" y="20" width="120" height="66"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                <inset key="titleEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UzX-BJ-0LF" customClass="MLBOmniButton">
+                                <rect key="frame" x="20" y="20" width="104" height="50"/>
                                 <state key="normal" title="Button" image="icon_adding_user">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOV-Os-tEq" customClass="MLBOmniButton">
-                                <rect key="frame" x="252" y="557" width="95" height="35"/>
-                                <inset key="contentEdgeInsets" minX="16" minY="8" maxX="5" maxY="5"/>
-                                <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
-                                <state key="normal" title="Button" image="icon_check_box_normal">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iwt-s7-Zwt" customClass="MLBOmniButton">
-                                <rect key="frame" x="506" y="289" width="74" height="22"/>
-                                <state key="normal" title="Button" image="icon_check_box_selected">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GML-YD-p0l" customClass="MLBOmniButton">
+                                <rect key="frame" x="20" y="233" width="102" height="48"/>
+                                <state key="normal" title="Button" image="icon_default_avatar_grey">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7V3-Bk-IXj" customClass="MLBOmniButton">
-                                <rect key="frame" x="20" y="20" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIu-rp-9Bl" customClass="MLBOmniButton">
+                                <rect key="frame" x="147" y="95" width="102" height="48"/>
+                                <state key="normal" title="Button" image="icon_default_avatar_grey">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGe-fz-PHM" customClass="MLBOmniButton">
+                                <rect key="frame" x="149" y="20" width="104" height="50"/>
+                                <state key="normal" title="Button" image="icon_adding_user">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsq-MP-mHx" customClass="MLBOmniButton">
+                                <rect key="frame" x="20" y="95" width="102" height="48"/>
+                                <state key="normal" title="Button" image="icon_default_avatar_grey">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sk5-y2-Xxf" customClass="MLBOmniButton">
+                                <rect key="frame" x="20" y="163" width="104" height="50"/>
+                                <state key="normal" title="Button" image="icon_adding_user">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmd-QD-jWu" customClass="MLBOmniButton">
+                                <rect key="frame" x="260" y="301" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="5B0-fb-Hvl"/>
-                                    <constraint firstAttribute="height" constant="40" id="XeV-cf-OhZ"/>
+                                    <constraint firstAttribute="width" constant="80" id="B5j-ru-fhl"/>
+                                    <constraint firstAttribute="height" constant="80" id="Np7-Xj-mfw"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="icon_adding_user">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7F-sy-ut0" customClass="MLBOmniButton">
-                                <rect key="frame" x="20" y="94" width="158" height="50"/>
-                                <state key="normal" title="ButtonButton" image="icon_adding_user">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUV-ud-Oae" customClass="MLBOmniButton">
+                                <rect key="frame" x="249" y="401" width="102" height="48"/>
+                                <state key="normal" title="Button" image="icon_default_avatar_grey">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7V3-Bk-IXj" firstAttribute="top" secondItem="JJF-49-i0u" secondAttribute="bottom" id="6RT-3I-RSm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Iwt-s7-Zwt" secondAttribute="trailing" id="Fqj-Gl-xel"/>
-                            <constraint firstItem="bOV-Os-tEq" firstAttribute="centerX" secondItem="ts5-U7-Qcl" secondAttribute="centerX" id="KML-Z9-yFm"/>
-                            <constraint firstItem="GF4-6s-F46" firstAttribute="top" secondItem="ts5-U7-Qcl" secondAttribute="topMargin" constant="20" id="KoR-RY-95f"/>
-                            <constraint firstItem="MSM-l5-7fW" firstAttribute="top" secondItem="bOV-Os-tEq" secondAttribute="bottom" constant="8" id="M4L-Zq-cbn"/>
-                            <constraint firstItem="GF4-6s-F46" firstAttribute="centerX" secondItem="ts5-U7-Qcl" secondAttribute="centerX" id="PL5-Z5-suf"/>
-                            <constraint firstItem="Iwt-s7-Zwt" firstAttribute="centerY" secondItem="ts5-U7-Qcl" secondAttribute="centerY" id="Y8u-4Q-bLm"/>
-                            <constraint firstItem="J7F-sy-ut0" firstAttribute="leading" secondItem="ts5-U7-Qcl" secondAttribute="leadingMargin" id="dLX-s9-i6y"/>
-                            <constraint firstItem="7V3-Bk-IXj" firstAttribute="leading" secondItem="ts5-U7-Qcl" secondAttribute="leadingMargin" id="mWA-9D-S2F"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="J7F-sy-ut0" secondAttribute="trailing" constant="8" id="xT6-N9-abf"/>
-                            <constraint firstItem="J7F-sy-ut0" firstAttribute="top" secondItem="GF4-6s-F46" secondAttribute="bottom" constant="8" id="zxZ-Te-s0t"/>
+                            <constraint firstItem="BUV-ud-Oae" firstAttribute="top" secondItem="jmd-QD-jWu" secondAttribute="bottom" constant="20" id="4B9-DN-KA1"/>
+                            <constraint firstItem="UzX-BJ-0LF" firstAttribute="top" secondItem="GTN-ET-TAG" secondAttribute="bottom" id="5pn-TD-oPs"/>
+                            <constraint firstItem="XGe-fz-PHM" firstAttribute="leading" secondItem="UzX-BJ-0LF" secondAttribute="trailing" constant="25" id="9qR-XC-F61"/>
+                            <constraint firstItem="jmd-QD-jWu" firstAttribute="top" secondItem="GML-YD-p0l" secondAttribute="bottom" constant="20" id="Ay4-lc-q4R"/>
+                            <constraint firstItem="UzX-BJ-0LF" firstAttribute="leading" secondItem="Cnd-ER-Etp" secondAttribute="leadingMargin" id="CQD-om-coS"/>
+                            <constraint firstItem="mIu-rp-9Bl" firstAttribute="top" secondItem="lsq-MP-mHx" secondAttribute="top" id="FnC-V3-M7f"/>
+                            <constraint firstItem="sk5-y2-Xxf" firstAttribute="top" secondItem="lsq-MP-mHx" secondAttribute="bottom" constant="20" id="GWS-XP-Vtg"/>
+                            <constraint firstItem="lsq-MP-mHx" firstAttribute="leading" secondItem="Cnd-ER-Etp" secondAttribute="leadingMargin" id="Ia3-Sk-xcx"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="GML-YD-p0l" secondAttribute="trailing" constant="8" id="Kp7-37-fwq"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="sk5-y2-Xxf" secondAttribute="trailing" constant="8" id="NnI-kI-Snu"/>
+                            <constraint firstItem="sk5-y2-Xxf" firstAttribute="leading" secondItem="Cnd-ER-Etp" secondAttribute="leadingMargin" id="TK2-aY-rk0"/>
+                            <constraint firstItem="GML-YD-p0l" firstAttribute="leading" secondItem="Cnd-ER-Etp" secondAttribute="leadingMargin" id="Tl9-Cc-Ga8"/>
+                            <constraint firstItem="XGe-fz-PHM" firstAttribute="top" secondItem="GTN-ET-TAG" secondAttribute="bottom" id="Vzb-j5-Gso"/>
+                            <constraint firstItem="BUV-ud-Oae" firstAttribute="centerX" secondItem="Cnd-ER-Etp" secondAttribute="centerX" id="Y0b-nx-FBi"/>
+                            <constraint firstItem="jmd-QD-jWu" firstAttribute="centerX" secondItem="Cnd-ER-Etp" secondAttribute="centerX" id="av4-p8-ceO"/>
+                            <constraint firstItem="GML-YD-p0l" firstAttribute="top" secondItem="sk5-y2-Xxf" secondAttribute="bottom" constant="20" id="cAM-0a-pSF"/>
+                            <constraint firstItem="mIu-rp-9Bl" firstAttribute="leading" secondItem="lsq-MP-mHx" secondAttribute="trailing" constant="25" id="dc9-mx-6Xn"/>
+                            <constraint firstItem="lsq-MP-mHx" firstAttribute="top" secondItem="UzX-BJ-0LF" secondAttribute="bottom" constant="25" id="tfR-9M-WUs"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="AutoLayout" image="icon_tab_bar_autolayout_normal" selectedImage="icon_tab_bar_autolayout_selected" id="Nbw-Ku-jZm"/>
                     <connections>
-                        <outlet property="buttonInIB" destination="GF4-6s-F46" id="0Mx-WK-P5M"/>
-                        <outlet property="buttonInIB1" destination="bOV-Os-tEq" id="dCf-2M-a9X"/>
-                        <outlet property="buttonInIBMultiLines" destination="J7F-sy-ut0" id="YLr-Mk-bM3"/>
-                        <outlet property="buttonInIBRight" destination="Iwt-s7-Zwt" id="86E-em-Ywu"/>
-                        <outlet property="buttonInIBWithSizeCons" destination="7V3-Bk-IXj" id="3jI-kd-bcm"/>
+                        <outlet property="buttonBottom" destination="XGe-fz-PHM" id="dbo-5f-MwQ"/>
+                        <outlet property="buttonLeft" destination="lsq-MP-mHx" id="LKl-yb-fMU"/>
+                        <outlet property="buttonLeftSingleLine" destination="sk5-y2-Xxf" id="Rqd-Zd-2Kk"/>
+                        <outlet property="buttonLeftWithSizeCons" destination="jmd-QD-jWu" id="0go-oY-ZGH"/>
+                        <outlet property="buttonRight" destination="mIu-rp-9Bl" id="DcX-0X-yyT"/>
+                        <outlet property="buttonRightMultiLines" destination="GML-YD-p0l" id="Ysy-Vm-1fa"/>
+                        <outlet property="buttonTop" destination="UzX-BJ-0LF" id="Krz-Np-I4n"/>
+                        <outlet property="buttonTopWithImageSize" destination="BUV-ud-Oae" id="J1e-np-4Rc"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aBS-yd-oTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CZT-NN-z5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783" y="409"/>
+            <point key="canvasLocation" x="994" y="1249"/>
+        </scene>
+        <!--Frame-->
+        <scene sceneID="Val-fh-JDb">
+            <objects>
+                <viewController id="81w-52-nEr" customClass="MLBFrameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IqC-N9-jJw"/>
+                        <viewControllerLayoutGuide type="bottom" id="RwP-Tw-EMB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="If3-5p-z4t">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Frame" image="icon_tab_bar_frame_normal" selectedImage="icon_tab_bar_frame_selected" id="6I3-U3-yfm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vMM-7h-MDb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="994" y="588"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="QtM-3a-uGU">
+            <objects>
+                <tabBarController id="WRv-q7-Dg1" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Xar-YP-ZlA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="81w-52-nEr" kind="relationship" relationship="viewControllers" id="Ckk-RF-f3m"/>
+                        <segue destination="54F-cn-PFI" kind="relationship" relationship="viewControllers" id="GL3-ei-Ds6"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tcy-9W-LWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="174" y="919"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon_adding_user" width="50" height="50"/>
-        <image name="icon_check_box_normal" width="20" height="20"/>
-        <image name="icon_check_box_selected" width="20" height="20"/>
+        <image name="icon_default_avatar_grey" width="48" height="48"/>
+        <image name="icon_tab_bar_autolayout_normal" width="25" height="25"/>
+        <image name="icon_tab_bar_autolayout_selected" width="25" height="25"/>
+        <image name="icon_tab_bar_frame_normal" width="25" height="25"/>
+        <image name="icon_tab_bar_frame_selected" width="25" height="25"/>
     </resources>
 </document>
