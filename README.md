@@ -20,11 +20,11 @@ or let them adaptive size:
 MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ```
 
-![Frame](https://github.com/meilbn/MLBOmniButton/ScreenShots/Demo_Frame.png)
+![][Frame]
 
 ### use AutoLayout
 
-![AutoLayout](https://github.com/meilbn/MLBOmniButton/ScreenShots/Demo_AutoLayout.png)
+![][AutoLayout]
 
 ## Installation
 ### CocoaPods
@@ -73,11 +73,11 @@ MLBOmniButton *button = [[MLBOmniButton alloc] initWithFrame:CGRectMake(0, 0, 10
 MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ```
 
-![Frame](https://github.com/meilbn/MLBOmniButton/ScreenShots/Demo_Frame.png)
+![][Frame]
 
 ### 使用 AutoLayout
 
-![AutoLayout](https://github.com/meilbn/MLBOmniButton/ScreenShots/Demo_AutoLayout.png)
+![][AutoLayout]
 
 ## 安装
 ### CocoaPods
@@ -99,7 +99,7 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ### 真机
 iPhone 5S (iOS 8.3)
 
-~~iPhone 7 Plus (iOS 10.0.2)~~
+~~iPhone 7 Plus (iOS 10.0.2) 还未测试~~
 
 ### 模拟器
 iPhone 6 (iOS 9.3)
@@ -107,3 +107,6 @@ iPhone 6 (iOS 9.3)
 
 ## 许可证
 MLBOmniButton 使用 MIT 许可证，详情见 LICENSE 文件。
+
+[Frame]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_Frame.png
+[AutoLayout]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_AutoLayout.png
