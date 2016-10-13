@@ -31,9 +31,9 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ## Features
 - [x] Easy to use
 - [x] Use with Storyboards, XIBs, Code
-- [] Can show badges
-- [] Design in Storyboard or XIB
-- [] Button's imageView support web image
+- [ ] Can show badges
+- [ ] Design in Storyboard or XIB
+- [ ] Button's imageView support web image
 
 ## Installation
 ### CocoaPods
@@ -91,9 +91,9 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ## 功能
 - [x] 使用简单
 - [x] 可以在 Storyboards、XIB 中使用，当然也可以通过代码创建
-- [] 可以显示 Badges
-- [] 可以在 Storyboard 或者 XIB 中配置自定义属性
-- [] 按钮的 imageView 支持显示网络图片
+- [ ] 可以显示 Badges
+- [ ] 可以在 Storyboard 或者 XIB 中配置自定义属性
+- [ ] 按钮的 imageView 支持显示网络图片
 
 ## 安装
 ### CocoaPods
