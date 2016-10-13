@@ -5,6 +5,7 @@
 //  Created by meilbn on 11/10/2016.
 //  Copyright © 2016 meilbn. All rights reserved.
 //
+//  Version: 0.1
 
 #import "MLBOmniButton.h"
 
@@ -26,6 +27,11 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 	return rtnSize;
 }
 
+CG_INLINE CGSize
+CGSizeRounded(CGSize size) {
+	return CGSizeMake(ceil(size.width), ceil(size.height));
+}
+
 @interface MLBOmniButton ()
 
 @end
@@ -35,6 +41,10 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 }
 
 #pragma mark - Lifecycle
+
+- (void)dealloc {
+	NSLog(@"%@ - %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+}
 
 - (instancetype)init {
 	if (self = [super init]) {
@@ -60,13 +70,14 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 	return self;
 }
 
-- (void)prepareForInterfaceBuilder {
-	[super prepareForInterfaceBuilder];
-	
-#if TARGET_INTERFACE_BUILDER
-	[self mlb_render];
-#endif
-}
+//- (void)prepareForInterfaceBuilder {
+//	[super prepareForInterfaceBuilder];
+//	
+//	NSLog(@"%@", NSStringFromSelector(_cmd));
+//#if TARGET_INTERFACE_BUILDER
+//	[self mlb_render];
+//#endif
+//}
 
 #pragma mark - Setter
 
@@ -81,83 +92,28 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 #pragma mark - Private Methods
 
 - (void)mlb_config {
-	NSLog(@"%@", NSStringFromSelector(_cmd));
+	NSLog(@"%@, frame = %@", NSStringFromSelector(_cmd), NSStringFromCGRect(self.frame));
 	_mlb_imageViewSize = CGSizeZero;
 	_mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
 	_userSetSize = !CGSizeEqualToSize(self.frame.size, CGSizeZero);
 //	NSLog(@"_userSetsFrame = %@", _userSetSize == MLBBOOLTrue ? @"YES" : @"NO");
 }
 
-- (void)mlb_render {
-	[self setImage:[self imageForState:UIControlStateNormal] forState:UIControlStateNormal];
-	[self setImage:[self imageForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
-	[self setImage:[self imageForState:UIControlStateSelected] forState:UIControlStateSelected];
-	[self setImage:[self imageForState:UIControlStateDisabled] forState:UIControlStateDisabled];
-	
-	[self setTitle:[self titleForState:UIControlStateNormal] forState:UIControlStateNormal];
-	[self setTitle:[self titleForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
-	[self setTitle:[self titleForState:UIControlStateSelected] forState:UIControlStateSelected];
-	[self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
-	
-	[self setTitleColor:[self titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
-	[self setTitleColor:[self titleColorForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
-	[self setTitleColor:[self titleColorForState:UIControlStateSelected] forState:UIControlStateSelected];
-	[self setTitleColor:[self titleColorForState:UIControlStateDisabled] forState:UIControlStateDisabled];
-}
-
-//- (CGSize)contentSize {
-//	// ImageView
-//	CGSize imageSize = CGSizeZero;
-//	CGSize imageViewSize = CGSizeZero;
-//	CGSize imageViewSizeWithEdgeInsets = CGSizeZero;
+//- (void)mlb_render {
+//	[self setImage:[self imageForState:UIControlStateNormal] forState:UIControlStateNormal];
+//	[self setImage:[self imageForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+//	[self setImage:[self imageForState:UIControlStateSelected] forState:UIControlStateSelected];
+//	[self setImage:[self imageForState:UIControlStateDisabled] forState:UIControlStateDisabled];
 //	
-//	// titleLabel
-//	CGSize titleSize = CGSizeZero;
-//	CGSize titleLabelSize = CGSizeZero;
-//	CGSize titleLabelSizeWithEdgeInsets = CGSizeZero;
+//	[self setTitle:[self titleForState:UIControlStateNormal] forState:UIControlStateNormal];
+//	[self setTitle:[self titleForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+//	[self setTitle:[self titleForState:UIControlStateSelected] forState:UIControlStateSelected];
+//	[self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
 //	
-//	// content
-//	CGSize contentSize = CGSizeZero;
-//	CGSize contentSizeWithEdgeInsets = CGSizeZero;
-//	
-//	if (CGSizeEqualToSize(_mlb_imageViewSize, CGSizeZero)) { // imageView size is not set
-//		imageSize = self.currentImage.size;
-//	} else { // imageView size is set
-//		imageSize = _mlb_imageViewSize;
-//	}
-//	
-//	imageViewSize = imageSize;
-//	imageViewSizeWithEdgeInsets = CGSizeAddEdgeInsets(imageViewSize, self.imageEdgeInsets);
-//	
-//	titleSize = [self.currentTitle boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 1000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size;
-//	titleLabelSize = titleSize;
-//	titleLabelSizeWithEdgeInsets = CGSizeAddEdgeInsets(titleSize, self.titleEdgeInsets);
-//	
-//	// calculate content size
-//	switch (_mlb_imageViewPosition) {
-//		case MLBOmniButtonImageViewPositionTop:
-//		case MLBOmniButtonImageViewPositionBottom: {
-//			contentSize = CGSizeMake(MAX(imageViewSizeWithEdgeInsets.width, titleLabelSizeWithEdgeInsets.width), imageViewSizeWithEdgeInsets.height + titleLabelSizeWithEdgeInsets.height);
-//			
-//			imageViewSizeWithEdgeInsets.width = contentSize.width;
-//			imageViewSize = CGSizeSubtractEdgeInsets(imageViewSizeWithEdgeInsets, self.imageEdgeInsets);
-//			
-//			titleLabelSizeWithEdgeInsets.width = contentSize.width;
-//			titleSize = CGSizeSubtractEdgeInsets(titleLabelSizeWithEdgeInsets, self.titleEdgeInsets);
-//			
-//			break;
-//		}
-//		case MLBOmniButtonImageViewPositionLeft:
-//		case MLBOmniButtonImageViewPositionRight: {
-//			contentSize = CGSizeMake(imageViewSizeWithEdgeInsets.width + titleLabelSizeWithEdgeInsets.width, MAX(imageViewSizeWithEdgeInsets.height, titleLabelSizeWithEdgeInsets.height));
-//			break;
-//		}
-//	}
-//	
-//	// calculate content bounds with contentEdgeInsets
-//	contentSizeWithEdgeInsets = CGSizeAddEdgeInsets(contentSize, self.contentEdgeInsets);
-//	
-//	return contentSizeWithEdgeInsets;
+//	[self setTitleColor:[self titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
+//	[self setTitleColor:[self titleColorForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
+//	[self setTitleColor:[self titleColorForState:UIControlStateSelected] forState:UIControlStateSelected];
+//	[self setTitleColor:[self titleColorForState:UIControlStateDisabled] forState:UIControlStateDisabled];
 //}
 
 - (CGSize)mlb_buttonSizeNeedsLayout:(BOOL)needsLayout {
@@ -188,10 +144,11 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 	imageViewSizeWithEdgeInsets = CGSizeAddEdgeInsets(imageViewSize, self.imageEdgeInsets);
 	
 	titleSize = [self.currentTitle boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 1000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : self.titleLabel.font} context:nil].size;
+	titleSize = CGSizeRounded(titleSize);
 	titleLabelSize = titleSize;
 	titleLabelSizeWithEdgeInsets = CGSizeAddEdgeInsets(titleSize, self.titleEdgeInsets);
 	
-	if (!_userSetSize) { // not set size
+	if (!_userSetSize || !needsLayout) { // not set size
 		// calculate content size
 		switch (_mlb_imageViewPosition) {
 			case MLBOmniButtonImageViewPositionTop:
@@ -202,19 +159,27 @@ CGSizeSubtractEdgeInsets(CGSize size, UIEdgeInsets insets) {
 				imageViewSize = CGSizeSubtractEdgeInsets(imageViewSizeWithEdgeInsets, self.imageEdgeInsets);
 				
 				titleLabelSizeWithEdgeInsets.width = contentSize.width;
-				titleSize = CGSizeSubtractEdgeInsets(titleLabelSizeWithEdgeInsets, self.titleEdgeInsets);
+				titleLabelSize = CGSizeSubtractEdgeInsets(titleLabelSizeWithEdgeInsets, self.titleEdgeInsets);
 				
 				break;
 			}
 			case MLBOmniButtonImageViewPositionLeft:
 			case MLBOmniButtonImageViewPositionRight: {
 				contentSize = CGSizeMake(imageViewSizeWithEdgeInsets.width + titleLabelSizeWithEdgeInsets.width, MAX(imageViewSizeWithEdgeInsets.height, titleLabelSizeWithEdgeInsets.height));
+				
+				imageViewSizeWithEdgeInsets.height = contentSize.height;
+				imageViewSize = CGSizeSubtractEdgeInsets(imageViewSizeWithEdgeInsets, self.imageEdgeInsets);
+				
+				titleLabelSizeWithEdgeInsets.height = contentSize.height;
+				titleLabelSize = CGSizeSubtractEdgeInsets(titleLabelSizeWithEdgeInsets, self.titleEdgeInsets);
+				
 				break;
 			}
 		}
 		
 		// calculate content bounds with contentEdgeInsets
 		contentSizeWithEdgeInsets = CGSizeAddEdgeInsets(contentSize, self.contentEdgeInsets);
+		contentSizeWithEdgeInsets = CGSizeRounded(contentSizeWithEdgeInsets);
 		
 		if (!needsLayout) {
 			return contentSizeWithEdgeInsets;
