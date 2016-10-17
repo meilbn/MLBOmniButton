@@ -16,6 +16,8 @@
 		235EAD4D1DACA7BF0093E71D /* MLBOmniButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD4C1DACA7BF0093E71D /* MLBOmniButton.m */; };
 		23A5F6BB1DAF5370005F0E15 /* MLBFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5F6BA1DAF5370005F0E15 /* MLBFrameViewController.m */; };
 		23A5F6BE1DAF5382005F0E15 /* MLBAutoLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5F6BD1DAF5382005F0E15 /* MLBAutoLayoutViewController.m */; };
+		23A5F6C21DAF9CFE005F0E15 /* MLBBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5F6C11DAF9CFE005F0E15 /* MLBBadgeView.m */; };
+		23A5F6C51DAFA20A005F0E15 /* MLBBadgeBackgroud.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A5F6C41DAFA20A005F0E15 /* MLBBadgeBackgroud.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,10 @@
 		23A5F6BA1DAF5370005F0E15 /* MLBFrameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBFrameViewController.m; sourceTree = "<group>"; };
 		23A5F6BC1DAF5382005F0E15 /* MLBAutoLayoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBAutoLayoutViewController.h; sourceTree = "<group>"; };
 		23A5F6BD1DAF5382005F0E15 /* MLBAutoLayoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBAutoLayoutViewController.m; sourceTree = "<group>"; };
+		23A5F6C01DAF9CFE005F0E15 /* MLBBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBBadgeView.h; sourceTree = "<group>"; };
+		23A5F6C11DAF9CFE005F0E15 /* MLBBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBBadgeView.m; sourceTree = "<group>"; };
+		23A5F6C31DAFA20A005F0E15 /* MLBBadgeBackgroud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBBadgeBackgroud.h; sourceTree = "<group>"; };
+		23A5F6C41DAFA20A005F0E15 /* MLBBadgeBackgroud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBBadgeBackgroud.m; sourceTree = "<group>"; };
 		3ADA6FEAAD21ADE8B01D278E /* libPods-MLBOmniButtonDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MLBOmniButtonDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6F7FC6A80CE9B5C4EAA49CC /* Pods-MLBOmniButtonDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLBOmniButtonDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		E62E620EDD696B7B3EDBE1A3 /* Pods-MLBOmniButtonDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLBOmniButtonDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLBOmniButtonDemo/Pods-MLBOmniButtonDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,11 +112,23 @@
 		235EAD4A1DACA78E0093E71D /* MLBOmniButton */ = {
 			isa = PBXGroup;
 			children = (
+				23A5F6BF1DAF9CE8005F0E15 /* MLBBadgeView */,
 				235EAD4B1DACA7BF0093E71D /* MLBOmniButton.h */,
 				235EAD4C1DACA7BF0093E71D /* MLBOmniButton.m */,
 			);
 			name = MLBOmniButton;
 			path = ../../MLBOmniButton;
+			sourceTree = "<group>";
+		};
+		23A5F6BF1DAF9CE8005F0E15 /* MLBBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				23A5F6C01DAF9CFE005F0E15 /* MLBBadgeView.h */,
+				23A5F6C11DAF9CFE005F0E15 /* MLBBadgeView.m */,
+				23A5F6C31DAFA20A005F0E15 /* MLBBadgeBackgroud.h */,
+				23A5F6C41DAFA20A005F0E15 /* MLBBadgeBackgroud.m */,
+			);
+			path = MLBBadgeView;
 			sourceTree = "<group>";
 		};
 		7745A52F72C7B4035C47392B /* Frameworks */ = {
@@ -253,6 +271,8 @@
 			files = (
 				23A5F6BB1DAF5370005F0E15 /* MLBFrameViewController.m in Sources */,
 				23A5F6BE1DAF5382005F0E15 /* MLBAutoLayoutViewController.m in Sources */,
+				23A5F6C51DAFA20A005F0E15 /* MLBBadgeBackgroud.m in Sources */,
+				23A5F6C21DAF9CFE005F0E15 /* MLBBadgeView.m in Sources */,
 				235EAD4D1DACA7BF0093E71D /* MLBOmniButton.m in Sources */,
 				235EAD321DACA5900093E71D /* AppDelegate.m in Sources */,
 				235EAD2F1DACA5900093E71D /* main.m in Sources */,

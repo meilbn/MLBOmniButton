@@ -8,6 +8,7 @@
 //  Version: 0.1
 
 #import "MLBOmniButton.h"
+#import "MLBBadgeView.h"
 
 /*** Definitions of inline functions. ***/
 
@@ -33,6 +34,8 @@ CGSizeRounded(CGSize size) {
 }
 
 @interface MLBOmniButton ()
+
+@property (strong, nonatomic) MLBBadgeView *badgeView;
 
 @end
 
@@ -79,6 +82,20 @@ CGSizeRounded(CGSize size) {
 //#endif
 //}
 
+#pragma mark - Getter
+
+- (MLBBadgeView *)badgeView {
+	if (!_badgeView) {
+		_badgeView = [[MLBBadgeView alloc] init];
+		_badgeView.mlb_badgeBackground.mlb_borderColor = _mlb_badgeBorderColor;
+		_badgeView.mlb_badgeBackground.mlb_borderWidth = _mlb_badgeBorderWidth;
+		_badgeView.mlb_badgeBackground.mlb_backgroundColor = kMLBBadgeDefaultBackgroundColor;
+		[self addSubview:_badgeView];
+	}
+	
+	return _badgeView;
+}
+
 #pragma mark - Setter
 
 - (void)setMlb_imageViewPosition:(MLBOmniButtonImageViewPosition)mlb_imageViewPosition {
@@ -89,37 +106,62 @@ CGSizeRounded(CGSize size) {
 	}
 }
 
+- (void)setMlb_badgeValue:(NSString *)mlb_badgeValue {
+	if (![_mlb_badgeValue isEqualToString:mlb_badgeValue]) {
+		_mlb_badgeValue = mlb_badgeValue.copy;
+		
+		self.badgeView.mlb_badgeValue = _mlb_badgeValue;
+		
+		if (_mlb_badgeValue && ![_mlb_badgeValue isEqualToString:@""]) {
+			[self setNeedsLayout];
+		} else {
+			[self.badgeView removeFromSuperview];
+			self.badgeView = nil;
+		}
+	}
+}
+
+- (void)setMlb_badgeBorderWidth:(CGFloat)mlb_badgeBorderWidth {
+	if (_mlb_badgeBorderWidth != mlb_badgeBorderWidth) {
+		_mlb_badgeBorderWidth = mlb_badgeBorderWidth;
+		_badgeView.mlb_badgeBackground.mlb_borderWidth = _mlb_badgeBorderWidth;
+	}
+}
+
+- (void)setMlb_badgeBorderColor:(UIColor *)mlb_badgeBorderColor {
+	if (_mlb_badgeBorderColor != mlb_badgeBorderColor) {
+		_mlb_badgeBorderColor = mlb_badgeBorderColor;
+		_badgeView.mlb_badgeBackground.mlb_borderColor = _mlb_badgeBorderColor;
+	}
+}
+
+- (void)setMlb_badgeBackgroundColor:(UIColor *)mlb_badgeBackgroundColor {
+	if (_mlb_badgeBackgroundColor != mlb_badgeBackgroundColor) {
+		_mlb_badgeBackgroundColor = mlb_badgeBackgroundColor;
+		_badgeView.mlb_badgeBackground.mlb_backgroundColor = _mlb_badgeBackgroundColor;
+	}
+}
+
+- (void)setMlb_badgeMaxWidth:(CGFloat)mlb_badgeMaxWidth {
+	if (_mlb_badgeMaxWidth != mlb_badgeMaxWidth) {
+		_mlb_badgeMaxWidth = mlb_badgeMaxWidth;
+		_badgeView.mlb_maxWidth = _mlb_badgeMaxWidth;
+	}
+}
+
 #pragma mark - Private Methods
 
 - (void)mlb_config {
-	NSLog(@"%@, frame = %@", NSStringFromSelector(_cmd), NSStringFromCGRect(self.frame));
 	_mlb_imageViewSize = CGSizeZero;
 	_mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
 	_userSetSize = !CGSizeEqualToSize(self.frame.size, CGSizeZero);
-//	NSLog(@"_userSetsFrame = %@", _userSetSize == MLBBOOLTrue ? @"YES" : @"NO");
+	_mlb_badgePosition = MLBOmniButtonBadgePositionContentTopRight;
+	_mlb_badgeBorderColor = [UIColor whiteColor];
+	_mlb_badgeBorderWidth = 0;
+	_mlb_badgeBackgroundColor = kMLBBadgeDefaultBackgroundColor;
 }
 
-//- (void)mlb_render {
-//	[self setImage:[self imageForState:UIControlStateNormal] forState:UIControlStateNormal];
-//	[self setImage:[self imageForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
-//	[self setImage:[self imageForState:UIControlStateSelected] forState:UIControlStateSelected];
-//	[self setImage:[self imageForState:UIControlStateDisabled] forState:UIControlStateDisabled];
-//	
-//	[self setTitle:[self titleForState:UIControlStateNormal] forState:UIControlStateNormal];
-//	[self setTitle:[self titleForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
-//	[self setTitle:[self titleForState:UIControlStateSelected] forState:UIControlStateSelected];
-//	[self setTitle:[self titleForState:UIControlStateDisabled] forState:UIControlStateDisabled];
-//	
-//	[self setTitleColor:[self titleColorForState:UIControlStateNormal] forState:UIControlStateNormal];
-//	[self setTitleColor:[self titleColorForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
-//	[self setTitleColor:[self titleColorForState:UIControlStateSelected] forState:UIControlStateSelected];
-//	[self setTitleColor:[self titleColorForState:UIControlStateDisabled] forState:UIControlStateDisabled];
-//}
-
 - (CGSize)mlb_buttonSizeNeedsLayout:(BOOL)needsLayout {
-	//	NSLog(@"-----------------------");
-	//	NSLog(@"_mlb_imageViewPosition = %ld, self.frame = %@", _mlb_imageViewPosition, NSStringFromCGRect(self.frame));
-	
 	// ImageView
 	CGSize imageSize = CGSizeZero;
 	CGSize imageViewSize = CGSizeZero;
@@ -233,9 +275,6 @@ CGSizeRounded(CGSize size) {
 			titleSize.height = size.height;
 		}
 	}
-	
-	//	NSLog(@"contentSizeWithEdgeInsets = %@", NSStringFromCGSize(contentSizeWithEdgeInsets));
-	//	NSLog(@"\nimageSize = %@,\nimageViewSize = %@,\nimageViewSizeWithEdgeInsets = %@,\ntitleSize = %@,\ntitleLabelSize = %@,\ntitleLabelSizeWithEdgeInsets = %@", NSStringFromCGSize(imageSize), NSStringFromCGSize(imageViewSize), NSStringFromCGSize(imageViewSizeWithEdgeInsets), NSStringFromCGSize(titleSize), NSStringFromCGSize(titleLabelSize), NSStringFromCGSize(titleLabelSizeWithEdgeInsets));
 	
 	/* layout ImageView and Label */
 	switch (_mlb_imageViewPosition) {
@@ -408,6 +447,117 @@ CGSizeRounded(CGSize size) {
 		}
 	}
 	
+	// layout BadgeView
+	if (_mlb_badgeValue && ![_mlb_badgeValue isEqualToString:@""]) {
+		[self bringSubviewToFront:_badgeView];
+		
+		CGPoint badgeCenter = CGPointZero;
+		
+		switch (_mlb_badgePosition) {
+			case MLBOmniButtonBadgePositionLabelTopLeft: {
+				badgeCenter = self.titleLabel.frame.origin;
+				break;
+			}
+			case MLBOmniButtonBadgePositionLabelTopRight: {
+				badgeCenter = (CGPoint){CGRectGetMaxX(self.titleLabel.frame), CGRectGetMinY(self.titleLabel.frame)};
+				break;
+			}
+			case MLBOmniButtonBadgePositionLabelBottomLeft: {
+				badgeCenter = (CGPoint){CGRectGetMinX(self.titleLabel.frame), CGRectGetMaxY(self.titleLabel.frame)};
+				break;
+			}
+			case MLBOmniButtonBadgePositionLabelBottomRight: {
+				badgeCenter = (CGPoint){CGRectGetMaxX(self.titleLabel.frame), CGRectGetMaxY(self.titleLabel.frame)};
+				break;
+			}
+			case MLBOmniButtonBadgePositionImageTopLeft: {
+				badgeCenter = self.imageView.frame.origin;
+				break;
+			}
+			case MLBOmniButtonBadgePositionImageTopRight: {
+				badgeCenter = (CGPoint){CGRectGetMaxX(self.imageView.frame), CGRectGetMinY(self.imageView.frame)};
+				break;
+			}
+			case MLBOmniButtonBadgePositionImageBottomLeft: {
+				badgeCenter = (CGPoint){CGRectGetMinX(self.imageView.frame), CGRectGetMaxY(self.imageView.frame)};
+				break;
+			}
+			case MLBOmniButtonBadgePositionImageBottomRight: {
+				badgeCenter = (CGPoint){CGRectGetMaxX(self.imageView.frame), CGRectGetMaxY(self.imageView.frame)};
+				break;
+			}
+			case MLBOmniButtonBadgePositionContentTopLeft: {
+				badgeCenter = (CGPoint){CGRectGetWidth(_badgeView.frame) / 2.0, CGRectGetHeight(_badgeView.frame) / 2.0};
+				break;
+			}
+			case MLBOmniButtonBadgePositionContentTopRight: {
+				badgeCenter = (CGPoint){CGRectGetWidth(self.frame) - CGRectGetWidth(_badgeView.frame) / 2.0, CGRectGetHeight(_badgeView.frame) / 2.0};
+				break;
+			}
+			case MLBOmniButtonBadgePositionContentBottomLeft: {
+				badgeCenter = (CGPoint){CGRectGetWidth(_badgeView.frame) / 2.0, CGRectGetHeight(self.frame) - CGRectGetHeight(_badgeView.frame) / 2.0};
+				break;
+			}
+			case MLBOmniButtonBadgePositionContentBottomRight: {
+				badgeCenter = (CGPoint){CGRectGetWidth(self.frame) - CGRectGetWidth(_badgeView.frame) / 2.0, CGRectGetHeight(self.frame) - CGRectGetHeight(_badgeView.frame) / 2.0};
+				break;
+			}
+		}
+		
+		// deal with edge cases
+		switch (_mlb_badgePosition) {
+			case MLBOmniButtonBadgePositionLabelTopLeft:
+			case MLBOmniButtonBadgePositionLabelBottomLeft:
+			case MLBOmniButtonBadgePositionImageTopLeft:
+			case MLBOmniButtonBadgePositionImageBottomLeft: {
+				CGFloat beyondX = badgeCenter.x - CGRectGetWidth(_badgeView.frame) / 2.0;
+				if (beyondX < 0) {
+					badgeCenter.x += fabs(beyondX);
+				}
+				break;
+			}
+			case MLBOmniButtonBadgePositionLabelTopRight:
+			case MLBOmniButtonBadgePositionLabelBottomRight:
+			case MLBOmniButtonBadgePositionImageTopRight:
+			case MLBOmniButtonBadgePositionImageBottomRight: {
+				CGFloat beyondX = badgeCenter.x + CGRectGetWidth(_badgeView.frame) / 2.0 - CGRectGetWidth(self.frame);
+				if (beyondX > 0) {
+					badgeCenter.x -= beyondX;
+				}
+				break;
+			}
+			default:
+				break;
+		}
+		
+		switch (_mlb_badgePosition) {
+			case MLBOmniButtonBadgePositionLabelTopLeft:
+			case MLBOmniButtonBadgePositionLabelTopRight:
+			case MLBOmniButtonBadgePositionImageTopLeft:
+			case MLBOmniButtonBadgePositionImageTopRight: {
+				CGFloat beyondY = badgeCenter.y - CGRectGetHeight(_badgeView.frame) / 2.0;
+				if (beyondY < 0) {
+					badgeCenter.y += fabs(beyondY);
+				}
+				break;
+			}
+			case MLBOmniButtonBadgePositionLabelBottomLeft:
+			case MLBOmniButtonBadgePositionLabelBottomRight:
+			case MLBOmniButtonBadgePositionImageBottomLeft:
+			case MLBOmniButtonBadgePositionImageBottomRight: {
+				CGFloat beyondY = badgeCenter.y + CGRectGetHeight(_badgeView.frame) / 2.0 - CGRectGetHeight(self.frame);
+				if (beyondY > 0) {
+					badgeCenter.y -= beyondY;
+				}
+				break;
+			}
+			default:
+				break;
+		}
+		
+		_badgeView.center = badgeCenter;
+	}
+	
 	return CGSizeZero;
 }
 
@@ -420,10 +570,7 @@ CGSizeRounded(CGSize size) {
 }
 
 - (CGSize)intrinsicContentSize {
-	NSLog(@"%@", NSStringFromSelector(_cmd));
-	
 	CGSize contentSize = [self mlb_buttonSizeNeedsLayout:NO];
-	NSLog(@"contentSize = %@", NSStringFromCGSize(contentSize));
 	if (!CGSizeEqualToSize(contentSize, CGSizeZero)) {
 		return contentSize;
 	}

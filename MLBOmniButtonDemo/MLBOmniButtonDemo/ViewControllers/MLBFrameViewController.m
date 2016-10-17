@@ -19,7 +19,9 @@
 
 @end
 
-@implementation MLBFrameViewController
+@implementation MLBFrameViewController {
+	NSInteger _clickCount;
+}
 
 #pragma mark - Lifecycle
 
@@ -43,16 +45,16 @@
 	[super viewDidLayoutSubviews];
 	
 	_buttonCenter.center = self.view.center;
-	_buttonTop.center = CGPointMake(CGRectGetMidX(self.view.frame), CGRectGetHeight(_buttonTop.frame) / 2);
+	_buttonTop.center = CGPointMake(CGRectGetMidX(self.view.frame), CGRectGetHeight(_buttonTop.frame) / 2 + 20);
 	_buttonLeft.center = CGPointMake(CGRectGetWidth(_buttonLeft.frame) / 2, CGRectGetMidY(self.view.frame));
-	_buttonBottom.center = CGPointMake(CGRectGetMidX(self.view.frame), CGRectGetHeight(self.view.frame) - CGRectGetHeight(_buttonBottom.frame) / 2);
+	_buttonBottom.center = CGPointMake(CGRectGetMidX(self.view.frame), CGRectGetHeight(self.view.frame) - CGRectGetHeight(_buttonBottom.frame) / 2 - 20);
 	_buttonRight.center = CGPointMake(CGRectGetWidth(self.view.frame) - CGRectGetWidth(_buttonRight.frame) / 2, CGRectGetMidY(self.view.frame));
 }
 
 #pragma mark - Private Methods
 
 - (void)initDatas {
-	
+	_clickCount = 0;
 }
 
 - (void)setupViews {
@@ -61,12 +63,20 @@
 	[_buttonCenter setImage:[UIImage imageNamed:@"icon_check_box_selected"] forState:UIControlStateSelected];
 
 	_buttonTop = [self addOmniButtonWithFrame:CGRectZero bgColor:[UIColor whiteColor] title:@"Top" imageName:@"icon_adding_user" imageViewPosition:MLBOmniButtonImageViewPositionTop imageEdgeInsets:UIEdgeInsetsMake(5, 15, 5, 15) titleEdgeInsets:UIEdgeInsetsZero contentEdgeInsets:UIEdgeInsetsZero];
+	_buttonTop.mlb_badgePosition = MLBOmniButtonBadgePositionImageTopRight;
+	_buttonTop.mlb_badgeValue = @"5";
 	
 	_buttonLeft = [self addOmniButtonWithFrame:CGRectZero bgColor:[UIColor whiteColor] title:@"Left" imageName:@"icon_default_avatar_grey" imageViewPosition:MLBOmniButtonImageViewPositionLeft imageEdgeInsets:UIEdgeInsetsZero titleEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8) contentEdgeInsets:UIEdgeInsetsZero];
+	_buttonLeft.mlb_badgePosition = MLBOmniButtonBadgePositionImageTopLeft;
+	_buttonLeft.mlb_badgeValue = @"3";
 	
 	_buttonBottom = [self addOmniButtonWithFrame:CGRectZero bgColor:[UIColor whiteColor] title:@"Bottom" imageName:@"icon_default_avatar_grey" imageViewPosition:MLBOmniButtonImageViewPositionBottom imageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5) titleEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8) contentEdgeInsets:UIEdgeInsetsZero];
+	_buttonBottom.mlb_badgePosition = MLBOmniButtonBadgePositionLabelTopRight;
+	_buttonBottom.mlb_badgeValue = @"1";
 	
 	_buttonRight = [self addOmniButtonWithFrame:CGRectZero bgColor:[UIColor whiteColor] title:@"Right" imageName:@"icon_button_right" imageViewPosition:MLBOmniButtonImageViewPositionRight imageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 8) titleEdgeInsets:UIEdgeInsetsMake(0, 8, 0, 0) contentEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+	_buttonRight.mlb_badgePosition = MLBOmniButtonBadgePositionLabelTopLeft;
+	_buttonRight.mlb_badgeValue = @"10";
 }
 
 - (MLBOmniButton *)addOmniButtonWithFrame:(CGRect)frame bgColor:(UIColor *)bgColor title:(NSString *)title imageName:(NSString *)imageName imageViewPosition:(MLBOmniButtonImageViewPosition)imageViewPosition imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets titleEdgeInsets:(UIEdgeInsets)titleEdgeInsets contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets {
@@ -94,6 +104,24 @@
 
 - (void)buttonSelected:(UIButton *)sender {
 	sender.selected = !sender.isSelected;
+	if (sender == _buttonCenter) {
+		_clickCount++;
+		if (_clickCount > 10) {
+			((MLBOmniButton *)sender).mlb_badgeBackgroundColor = [UIColor colorWithRed:0.214 green:0.811 blue:0.330 alpha:1.000];
+			
+			if (_clickCount > 15) {
+				((MLBOmniButton *)sender).mlb_badgeBorderColor = [UIColor colorWithRed:0.699 green:0.215 blue:0.790 alpha:1.000];
+				((MLBOmniButton *)sender).mlb_badgeBorderWidth = 1;
+			}
+		}
+		
+		if (_clickCount <= 20) {
+			((MLBOmniButton *)sender).mlb_badgeValue = [@(_clickCount) stringValue];
+		} else {
+			((MLBOmniButton *)sender).mlb_badgeValue = @"";
+			_clickCount = 0;
+		}
+	}
 }
 
 #pragma mark - Network Request

@@ -15,6 +15,26 @@ typedef NS_ENUM(NSUInteger, MLBOmniButtonImageViewPosition) {
 	MLBOmniButtonImageViewPositionRight,  // ImageView 在 titleLabel 右方 // The ImageView is right of the titleLabel
 };
 
+typedef NS_ENUM(NSUInteger, MLBOmniButtonBadgePosition) {
+	// sticky with Label
+	MLBOmniButtonBadgePositionLabelTopLeft,
+	MLBOmniButtonBadgePositionLabelTopRight,
+	MLBOmniButtonBadgePositionLabelBottomLeft,
+	MLBOmniButtonBadgePositionLabelBottomRight,
+	
+	// sticky with ImageView
+	MLBOmniButtonBadgePositionImageTopLeft,
+	MLBOmniButtonBadgePositionImageTopRight,
+	MLBOmniButtonBadgePositionImageBottomLeft,
+	MLBOmniButtonBadgePositionImageBottomRight,
+	
+	// sticky with Content, ingore button's contentEdgeInsets
+	MLBOmniButtonBadgePositionContentTopLeft,
+	MLBOmniButtonBadgePositionContentTopRight,
+	MLBOmniButtonBadgePositionContentBottomLeft,
+	MLBOmniButtonBadgePositionContentBottomRight,
+};
+
 //IB_DESIGNABLE
 @interface MLBOmniButton : UIButton
 
@@ -69,6 +89,20 @@ typedef NS_ENUM(NSUInteger, MLBOmniButtonImageViewPosition) {
  *
  */
 @property (nonatomic) MLBOmniButtonImageViewPosition mlb_imageViewPosition;// IBInspectable
+
+// Badge
+
+@property (nullable, nonatomic, copy) NSString *mlb_badgeValue; // default is nil
+
+@property (nonatomic) MLBOmniButtonBadgePosition mlb_badgePosition; // default is MLBOmniButtonBadgePositionContentTopRight
+
+@property (nonnull, nonatomic) UIColor *mlb_badgeBorderColor; // default is white
+
+@property (nonatomic) CGFloat mlb_badgeBorderWidth; // default is 0
+
+@property (nonnull, nonatomic) UIColor *mlb_badgeBackgroundColor; // default is kMLBBadgeDefaultBackgroundColor
+
+@property (nonatomic) CGFloat mlb_badgeMaxWidth; // default is 0, no limit
 
 @end
 

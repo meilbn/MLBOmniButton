@@ -52,31 +52,47 @@
 - (void)setupViews {
 	_buttonTop.mlb_imageViewPosition = MLBOmniButtonImageViewPositionTop;
 	[self addButtonBorder:_buttonTop];
+	_buttonTop.mlb_badgePosition = MLBOmniButtonBadgePositionContentTopLeft;
+	_buttonTop.mlb_badgeValue = @"1";
 	
 	_buttonBottom.mlb_imageViewPosition = MLBOmniButtonImageViewPositionBottom;
 	[self addButtonBorder:_buttonBottom];
+	_buttonBottom.mlb_badgePosition = MLBOmniButtonBadgePositionImageBottomRight;
+	_buttonBottom.mlb_badgeValue = @"4";
 	
 	_buttonLeft.mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
 	[self addButtonBorder:_buttonLeft];
+	_buttonLeft.mlb_badgePosition = MLBOmniButtonBadgePositionLabelBottomRight;
+	_buttonLeft.mlb_badgeValue = @"7";
 	
 	_buttonRight.mlb_imageViewPosition = MLBOmniButtonImageViewPositionRight;
 	[self addButtonBorder:_buttonRight];
+	_buttonRight.mlb_badgePosition = MLBOmniButtonBadgePositionImageBottomLeft;
+	_buttonRight.mlb_badgeValue = @"11";
 	
 	_buttonLeftSingleLine.mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
 	[_buttonLeftSingleLine setTitle:@"ButtonButtonButtonButtonButtonButtonButtonButtonButton" forState:UIControlStateNormal];
 	[self addButtonBorder:_buttonLeftSingleLine];
+	_buttonLeftSingleLine.mlb_badgePosition = MLBOmniButtonBadgePositionLabelBottomLeft;
+	_buttonLeftSingleLine.mlb_badgeValue = @"15";
 	
 	_buttonRightMultiLines.mlb_imageViewPosition = MLBOmniButtonImageViewPositionRight;
 	_buttonRightMultiLines.titleLabel.numberOfLines = 2;
 	[_buttonRightMultiLines setTitle:@"ButtonButtonButtonButtonButtonButtonButtonButtonButton" forState:UIControlStateNormal];
 	[self addButtonBorder:_buttonRightMultiLines];
+	_buttonRightMultiLines.mlb_badgePosition = MLBOmniButtonBadgePositionContentTopRight;
+	_buttonRightMultiLines.mlb_badgeValue = @"21";
 	
 	_buttonLeftWithSizeCons.mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
 	[self addButtonBorder:_buttonLeftWithSizeCons];
+	_buttonLeftWithSizeCons.mlb_badgePosition = MLBOmniButtonBadgePositionContentBottomRight;
+	_buttonLeftWithSizeCons.mlb_badgeValue = @"99+";
 	
 	_buttonTopWithImageSize.mlb_imageViewPosition = MLBOmniButtonImageViewPositionTop;
 	_buttonTopWithImageSize.mlb_imageViewSize = CGSizeMake(25, 25);
 	[self addButtonBorder:_buttonTopWithImageSize];
+	_buttonTopWithImageSize.mlb_badgePosition = MLBOmniButtonBadgePositionContentBottomRight;
+	_buttonTopWithImageSize.mlb_badgeValue = @"100";
 }
 
 - (void)addButtonBorder:(UIButton *)button {
