@@ -152,13 +152,15 @@ CGSizeRounded(CGSize size) {
 #pragma mark - Private Methods
 
 - (void)mlb_config {
-	_mlb_imageViewSize = CGSizeZero;
-	_mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
-	_userSetSize = !CGSizeEqualToSize(self.frame.size, CGSizeZero);
-	_mlb_badgePosition = MLBOmniButtonBadgePositionContentTopRight;
-	_mlb_badgeBorderColor = [UIColor whiteColor];
-	_mlb_badgeBorderWidth = 0;
-	_mlb_badgeBackgroundColor = kMLBBadgeDefaultBackgroundColor;
+	if (!_mlb_badgeBorderColor) {
+		_mlb_imageViewSize = CGSizeZero;
+		_mlb_imageViewPosition = MLBOmniButtonImageViewPositionLeft;
+		_userSetSize = !CGSizeEqualToSize(self.frame.size, CGSizeZero);
+		_mlb_badgePosition = MLBOmniButtonBadgePositionContentTopRight;
+		_mlb_badgeBorderColor = [UIColor whiteColor];
+		_mlb_badgeBorderWidth = 0;
+		_mlb_badgeBackgroundColor = kMLBBadgeDefaultBackgroundColor;
+	}
 }
 
 - (CGSize)mlb_buttonSizeNeedsLayout:(BOOL)needsLayout {
@@ -227,8 +229,8 @@ CGSizeRounded(CGSize size) {
 			return contentSizeWithEdgeInsets;
 		}
 		
-		// set frame
-		self.frame = (CGRect){self.frame.origin, contentSizeWithEdgeInsets};
+		// set bounds
+		self.bounds = (CGRect){CGPointZero, contentSizeWithEdgeInsets};
 	} else { // set size
 		contentSizeWithEdgeInsets = self.frame.size;
 		contentSize = CGSizeSubtractEdgeInsets(contentSizeWithEdgeInsets, self.contentEdgeInsets);
@@ -276,19 +278,21 @@ CGSizeRounded(CGSize size) {
 		}
 	}
 	
+	UIImageView *buttonImageView = [self valueForKey:@"_imageView"];
+	
 	/* layout ImageView and Label */
 	switch (_mlb_imageViewPosition) {
 		case MLBOmniButtonImageViewPositionTop:
 		case MLBOmniButtonImageViewPositionBottom: {
 			if (_mlb_imageViewPosition == MLBOmniButtonImageViewPositionTop) {
-				self.imageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
+				buttonImageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
 				self.titleLabel.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.titleEdgeInsets.left, CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.titleEdgeInsets.bottom - titleSize.height), titleSize};
 			} else {
-				self.imageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.imageEdgeInsets.bottom - imageSize.height), imageSize};
+				buttonImageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, CGRectGetHeight(self.frame) - self.contentEdgeInsets.bottom - self.imageEdgeInsets.bottom - imageSize.height), imageSize};
 				self.titleLabel.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.titleEdgeInsets.left, self.contentEdgeInsets.top + self.titleEdgeInsets.top), titleSize};
 			}
 			
-			CGPoint imageViewCenter = self.imageView.center;
+			CGPoint imageViewCenter = buttonImageView.center;
 			CGPoint titleLabelCenter = self.titleLabel.center;
 			
 			switch (self.contentHorizontalAlignment) {
@@ -357,7 +361,7 @@ CGSizeRounded(CGSize size) {
 				}
 			}
 			
-			self.imageView.center = imageViewCenter;
+			buttonImageView.center = imageViewCenter;
 			self.titleLabel.center = titleLabelCenter;
 			
 			break;
@@ -365,14 +369,14 @@ CGSizeRounded(CGSize size) {
 		case MLBOmniButtonImageViewPositionLeft:
 		case MLBOmniButtonImageViewPositionRight: {
 			if (_mlb_imageViewPosition == MLBOmniButtonImageViewPositionLeft) {
-				self.imageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
+				buttonImageView.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.imageEdgeInsets.left, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
 				self.titleLabel.frame = (CGRect){CGPointMake(CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.titleEdgeInsets.right - titleSize.width, self.contentEdgeInsets.top + self.titleEdgeInsets.top), titleSize};
 			} else {
-				self.imageView.frame = (CGRect){CGPointMake(CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.imageEdgeInsets.right - imageSize.width, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
+				buttonImageView.frame = (CGRect){CGPointMake(CGRectGetWidth(self.frame) - self.contentEdgeInsets.right - self.imageEdgeInsets.right - imageSize.width, self.contentEdgeInsets.top + self.imageEdgeInsets.top), imageSize};
 				self.titleLabel.frame = (CGRect){CGPointMake(self.contentEdgeInsets.left + self.titleEdgeInsets.left, self.contentEdgeInsets.top + self.titleEdgeInsets.top), titleSize};
 			}
 			
-			CGPoint imageViewCenter = self.imageView.center;
+			CGPoint imageViewCenter = buttonImageView.center;
 			CGPoint titleLabelCenter = self.titleLabel.center;
 			
 			switch (self.contentVerticalAlignment) {
@@ -440,7 +444,7 @@ CGSizeRounded(CGSize size) {
 				}
 			}
 			
-			self.imageView.center = imageViewCenter;
+			buttonImageView.center = imageViewCenter;
 			self.titleLabel.center = titleLabelCenter;
 			
 			break;
@@ -471,19 +475,19 @@ CGSizeRounded(CGSize size) {
 				break;
 			}
 			case MLBOmniButtonBadgePositionImageTopLeft: {
-				badgeCenter = self.imageView.frame.origin;
+				badgeCenter = buttonImageView.frame.origin;
 				break;
 			}
 			case MLBOmniButtonBadgePositionImageTopRight: {
-				badgeCenter = (CGPoint){CGRectGetMaxX(self.imageView.frame), CGRectGetMinY(self.imageView.frame)};
+				badgeCenter = (CGPoint){CGRectGetMaxX(buttonImageView.frame), CGRectGetMinY(buttonImageView.frame)};
 				break;
 			}
 			case MLBOmniButtonBadgePositionImageBottomLeft: {
-				badgeCenter = (CGPoint){CGRectGetMinX(self.imageView.frame), CGRectGetMaxY(self.imageView.frame)};
+				badgeCenter = (CGPoint){CGRectGetMinX(buttonImageView.frame), CGRectGetMaxY(buttonImageView.frame)};
 				break;
 			}
 			case MLBOmniButtonBadgePositionImageBottomRight: {
-				badgeCenter = (CGPoint){CGRectGetMaxX(self.imageView.frame), CGRectGetMaxY(self.imageView.frame)};
+				badgeCenter = (CGPoint){CGRectGetMaxX(buttonImageView.frame), CGRectGetMaxY(buttonImageView.frame)};
 				break;
 			}
 			case MLBOmniButtonBadgePositionContentTopLeft: {
@@ -565,7 +569,6 @@ CGSizeRounded(CGSize size) {
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	
 	[self mlb_buttonSizeNeedsLayout:YES];
 }
 

@@ -95,10 +95,12 @@
 #pragma mark - Private Methods
 
 - (void)mlb_config {
-	self.contentMode = UIViewContentModeRedraw;
-	_mlb_backgroundColor = kMLBBadgeDefaultBackgroundColor;
-	_mlb_borderColor = [UIColor whiteColor];
-	_mlb_borderWidth = 0;
+	if (!_mlb_backgroundColor) {
+		self.contentMode = UIViewContentModeRedraw;
+		_mlb_backgroundColor = kMLBBadgeDefaultBackgroundColor;
+		_mlb_borderColor = [UIColor whiteColor];
+		_mlb_borderWidth = 0;
+	}
 }
 
 - (void)mlb_updateView {

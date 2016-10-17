@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		21C6D797FDB6BC42A0FE533E /* libPods-MLBOmniButtonDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADA6FEAAD21ADE8B01D278E /* libPods-MLBOmniButtonDemo.a */; };
 		23237DA61DAE0E4800CFD293 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23237DA51DAE0E4800CFD293 /* Main.storyboard */; };
+		2326ECE31DB49DCC003AE4DF /* MLBMasonryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2326ECE21DB49DCC003AE4DF /* MLBMasonryViewController.m */; };
 		235EAD2F1DACA5900093E71D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD2E1DACA5900093E71D /* main.m */; };
 		235EAD321DACA5900093E71D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 235EAD311DACA5900093E71D /* AppDelegate.m */; };
 		235EAD3A1DACA5900093E71D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 235EAD391DACA5900093E71D /* Assets.xcassets */; };
@@ -22,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		23237DA51DAE0E4800CFD293 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2326ECE11DB49DCC003AE4DF /* MLBMasonryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLBMasonryViewController.h; sourceTree = "<group>"; };
+		2326ECE21DB49DCC003AE4DF /* MLBMasonryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLBMasonryViewController.m; sourceTree = "<group>"; };
 		235EAD2A1DACA5900093E71D /* MLBOmniButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MLBOmniButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		235EAD2E1DACA5900093E71D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		235EAD301DACA5900093E71D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +108,8 @@
 				23A5F6BA1DAF5370005F0E15 /* MLBFrameViewController.m */,
 				23A5F6BC1DAF5382005F0E15 /* MLBAutoLayoutViewController.h */,
 				23A5F6BD1DAF5382005F0E15 /* MLBAutoLayoutViewController.m */,
+				2326ECE11DB49DCC003AE4DF /* MLBMasonryViewController.h */,
+				2326ECE21DB49DCC003AE4DF /* MLBMasonryViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2326ECE31DB49DCC003AE4DF /* MLBMasonryViewController.m in Sources */,
 				23A5F6BB1DAF5370005F0E15 /* MLBFrameViewController.m in Sources */,
 				23A5F6BE1DAF5382005F0E15 /* MLBAutoLayoutViewController.m in Sources */,
 				23A5F6C51DAFA20A005F0E15 /* MLBBadgeBackgroud.m in Sources */,
