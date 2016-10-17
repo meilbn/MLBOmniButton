@@ -28,10 +28,16 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 
 ![][AutoLayout]
 
+### Show Badge
+
+![][FrameWithBadge]
+
+![][AutoLayoutWithBadge]
+
 ## Features
 - [x] Easy to use
 - [x] Use with Storyboards, XIBs, Code
-- [ ] Can show badges
+- [x] Can show badges
 - [ ] Design in Storyboard or XIB
 - [ ] Button's imageView support web image
 
@@ -48,7 +54,7 @@ Not yet supported.
 3. Import ``MLBOmniButton.h``.
 
 ## Requirements
-This library requires ``iOS 7.0+`` 和 ``Xcode 7+``.
+This library requires ``iOS 7.0+`` 和 ``Xcode 7.3.1+``.
 
 ## Tested devices
 
@@ -88,10 +94,16 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 
 ![][AutoLayout]
 
+### 显示 Badge
+
+![][FrameWithBadge]
+
+![][AutoLayoutWithBadge]
+
 ## 功能
 - [x] 使用简单
 - [x] 可以在 Storyboards、XIB 中使用，当然也可以通过代码创建
-- [ ] 可以显示 Badges
+- [x] 可以显示 Badges
 - [ ] 可以在 Storyboard 或者 XIB 中配置自定义属性
 - [ ] 按钮的 imageView 支持显示网络图片
 
@@ -120,9 +132,10 @@ iPhone 5S (iOS 8.3)
 ### 模拟器
 iPhone 6 (iOS 9.3)
 
-
 ## 许可证
 MLBOmniButton 使用 MIT 许可证，详情见 LICENSE 文件。
 
 [Frame]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_Frame.png
 [AutoLayout]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_AutoLayout.png
+[FrameWithBadge]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_Frame_with_Badge.png
+[AutoLayoutWithBadge]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_AutoLayout_with_Badge.png
