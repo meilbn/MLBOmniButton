@@ -34,6 +34,9 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 
 ![][AutoLayoutWithBadge]
 
+## Bug
+- Not yet supported Masonry or NSLayoutConstraint to add Constraints, will crash!
+
 ## Features
 - [x] Easy to use
 - [x] Use with Storyboards, XIBs, Code
@@ -99,6 +102,9 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ![][FrameWithBadge]
 
 ![][AutoLayoutWithBadge]
+
+## Bug
+- 还不支持 Masonry 和 NSLayoutConstant 添加约束，会崩溃！
 
 ## 功能
 - [x] 使用简单
