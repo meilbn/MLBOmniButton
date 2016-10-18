@@ -6,6 +6,8 @@
 
 An Easy-to-use UIButton custom controls, including some of the common needs of the feature.
 
+## [中文介绍](https://github.com/meilbn/MLBOmniButton#中文介绍)
+
 ## Demo Project
 See ``MLBOmniButtonDemo/MLBOmniButtonDemo.xcworkspace``.
 
