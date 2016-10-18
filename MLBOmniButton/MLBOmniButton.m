@@ -8,8 +8,8 @@
 
 #import "MLBOmniButton.h"
 #import "MLBBadgeView.h"
-#import <SDWebImage/SDWebImageDownloader.h>
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "SDWebImageDownloader.h"
+#import "UIImageView+WebCache.h"
 
 /*** Definitions of inline functions. ***/
 
@@ -585,23 +585,28 @@ CGSizeRounded(CGSize size) {
 - (void)mlb_setImage:(UIImage *)image forState:(UIControlState)state {
 	[self setImage:image forState:state];
 	[self setNeedsLayout];
+	[self layoutIfNeeded];
 }
 
 #pragma mark - Public Methods
 
 - (void)mlb_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage forState:(UIControlState)state storeImageToDisk:(BOOL)storeImageToDisk {
+	if ([[SDImageCache sharedImageCache] diskImageExistsWithKey:url.absoluteString]) {
+		[self mlb_setImage:[[SDImageCache sharedImageCache] imageFromDiskCacheForKey:url.absoluteString] forState:state];
+		return;
+	}
+	
 	[self mlb_setImage:placeholderImage forState:state];
+	[self.imageView sd_cancelCurrentImageLoad];
+	
 	__weak typeof(self) weakSelf = self;
-	[[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+	[self.imageView sd_setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
 		if (!weakSelf) {
 			return;
 		}
 		
-		if (image && finished) {
-			dispatch_main_sync_safe(^{
-				[weakSelf mlb_setImage:image forState:state];
-			});
-			
+		if (image) {
+			[weakSelf mlb_setImage:image forState:state];
 			[[SDImageCache sharedImageCache] storeImage:image forKey:url.absoluteString toDisk:storeImageToDisk];
 		}
 	}];

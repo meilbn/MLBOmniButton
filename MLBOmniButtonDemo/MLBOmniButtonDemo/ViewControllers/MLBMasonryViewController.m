@@ -55,7 +55,7 @@
 	[_button0 setImage:[UIImage imageNamed:@"icon_adding_user"] forState:UIControlStateNormal];
 	[_button0 setTitle:@"Button" forState:UIControlStateNormal];
 	_button0.mlb_imageViewPosition = MLBOmniButtonImageViewPositionTop;
-	_button0.mlb_imageViewSize = CGSizeMake(200, 200);
+//	_button0.mlb_imageViewSize = CGSizeMake(200, 200);
 	[self.view addSubview:_button0];
 //	[_button0 mas_makeConstraints:^(MASConstraintMaker *make) {
 //		make.width.height.equalTo(@100);
@@ -73,7 +73,8 @@
 	
 	// https://upload.wikimedia.org/wikipedia/zh/3/34/Lenna.jpg
 	// http://users.math.yale.edu/YCM/IMAGES/GCOMPRES/LENNA/LENNA.JPG
-	[_button0 mlb_setImageWithURL:[NSURL URLWithString:@"http://www.fmwconcepts.com/misc_tests/FFT_tests/lena_lowpass/lena.jpg"] placeholderImage:[UIImage imageNamed:@"icon_adding_user"] forState:UIControlStateNormal storeImageToDisk:YES];
+	// http://www.fmwconcepts.com/misc_tests/FFT_tests/lena_lowpass/lena.jpg
+	[_button0 mlb_setImageWithURL:[NSURL URLWithString:@"http://www.fmwconcepts.com/misc_tests/lena.png"] placeholderImage:[UIImage imageNamed:@"icon_adding_user"] forState:UIControlStateNormal storeImageToDisk:YES];
 	
 	// Masonry
 	_button1 = [MLBOmniButton new];
