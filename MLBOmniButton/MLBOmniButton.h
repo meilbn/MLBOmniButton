@@ -5,6 +5,7 @@
 //  Created by meilbn on 11/10/2016.
 //  Copyright © 2016 meilbn. All rights reserved.
 //
+//  Version: 0.0.1
 
 #import <UIKit/UIKit.h>
 
@@ -103,6 +104,20 @@ typedef NS_ENUM(NSUInteger, MLBOmniButtonBadgePosition) {
 @property (nonnull, nonatomic) UIColor *mlb_badgeBackgroundColor; // default is kMLBBadgeDefaultBackgroundColor
 
 @property (nonatomic) CGFloat mlb_badgeMaxWidth; // default is 0, no limit
+
+// Web image
+
+/**
+ *  显示网络图片
+ *
+ *  Show image from internet
+ *
+ *  @param url              图片 URL 地址
+ *  @param placeholderImage 占位图
+ *  @param state            按钮状态
+ *  @param storeImageToDisk 是否保存到硬盘
+ */
+- (void)mlb_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage forState:(UIControlState)state storeImageToDisk:(BOOL)storeImageToDisk;
 
 @end
 

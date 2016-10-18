@@ -5,10 +5,11 @@
 //  Created by meilbn on 11/10/2016.
 //  Copyright © 2016 meilbn. All rights reserved.
 //
-//  Version: 0.1
 
 #import "MLBOmniButton.h"
 #import "MLBBadgeView.h"
+#import <SDWebImage/SDWebImageDownloader.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 /*** Definitions of inline functions. ***/
 
@@ -149,6 +150,24 @@ CGSizeRounded(CGSize size) {
 	}
 }
 
+#pragma mark - Parent Methods
+
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	NSLog(@"%@", NSStringFromSelector(_cmd));
+	[self mlb_buttonSizeNeedsLayout:YES];
+}
+
+- (CGSize)intrinsicContentSize {
+//	NSLog(@"%@", NSStringFromSelector(_cmd));
+	CGSize contentSize = [self mlb_buttonSizeNeedsLayout:NO];
+	if (!CGSizeEqualToSize(contentSize, CGSizeZero)) {
+		return contentSize;
+	}
+	
+	return [super intrinsicContentSize];
+}
+
 #pragma mark - Private Methods
 
 - (void)mlb_config {
@@ -204,7 +223,6 @@ CGSizeRounded(CGSize size) {
 				
 				titleLabelSizeWithEdgeInsets.width = contentSize.width;
 				titleLabelSize = CGSizeSubtractEdgeInsets(titleLabelSizeWithEdgeInsets, self.titleEdgeInsets);
-				
 				break;
 			}
 			case MLBOmniButtonImageViewPositionLeft:
@@ -216,7 +234,6 @@ CGSizeRounded(CGSize size) {
 				
 				titleLabelSizeWithEdgeInsets.height = contentSize.height;
 				titleLabelSize = CGSizeSubtractEdgeInsets(titleLabelSizeWithEdgeInsets, self.titleEdgeInsets);
-				
 				break;
 			}
 		}
@@ -565,20 +582,29 @@ CGSizeRounded(CGSize size) {
 	return CGSizeZero;
 }
 
-#pragma mark - Parent Methods
-
-- (void)layoutSubviews {
-	[super layoutSubviews];
-	[self mlb_buttonSizeNeedsLayout:YES];
+- (void)mlb_setImage:(UIImage *)image forState:(UIControlState)state {
+	[self setImage:image forState:state];
+	[self setNeedsLayout];
 }
 
-- (CGSize)intrinsicContentSize {
-	CGSize contentSize = [self mlb_buttonSizeNeedsLayout:NO];
-	if (!CGSizeEqualToSize(contentSize, CGSizeZero)) {
-		return contentSize;
-	}
-	
-	return [super intrinsicContentSize];
+#pragma mark - Public Methods
+
+- (void)mlb_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage forState:(UIControlState)state storeImageToDisk:(BOOL)storeImageToDisk {
+	[self mlb_setImage:placeholderImage forState:state];
+	__weak typeof(self) weakSelf = self;
+	[[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+		if (!weakSelf) {
+			return;
+		}
+		
+		if (image && finished) {
+			dispatch_main_sync_safe(^{
+				[weakSelf mlb_setImage:image forState:state];
+			});
+			
+			[[SDImageCache sharedImageCache] storeImage:image forKey:url.absoluteString toDisk:storeImageToDisk];
+		}
+	}];
 }
 
 @end

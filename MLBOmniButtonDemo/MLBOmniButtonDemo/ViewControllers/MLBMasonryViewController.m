@@ -7,8 +7,9 @@
 //
 
 #import "MLBMasonryViewController.h"
-#import <Masonry/Masonry.h>
 #import "MLBOmniButton.h"
+#import <Masonry/Masonry.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MLBMasonryViewController ()
 
@@ -54,16 +55,25 @@
 	[_button0 setImage:[UIImage imageNamed:@"icon_adding_user"] forState:UIControlStateNormal];
 	[_button0 setTitle:@"Button" forState:UIControlStateNormal];
 	_button0.mlb_imageViewPosition = MLBOmniButtonImageViewPositionTop;
+	_button0.mlb_imageViewSize = CGSizeMake(200, 200);
 	[self.view addSubview:_button0];
+//	[_button0 mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.width.height.equalTo(@100);
+//		make.center.equalTo(self.view);
+//	}];
 	
 	// width constraint
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_button0(==100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_button0)]];
+//	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_button0(==100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_button0)]];
 	// height constraint
-	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_button0(==100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_button0)]];
+//	[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_button0(==100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_button0)]];
 	// center button0 horizontally in self.view
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:_button0 attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
 	// center button0 vertically in self.view
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:_button0 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+	
+	// https://upload.wikimedia.org/wikipedia/zh/3/34/Lenna.jpg
+	// http://users.math.yale.edu/YCM/IMAGES/GCOMPRES/LENNA/LENNA.JPG
+	[_button0 mlb_setImageWithURL:[NSURL URLWithString:@"http://www.fmwconcepts.com/misc_tests/FFT_tests/lena_lowpass/lena.jpg"] placeholderImage:[UIImage imageNamed:@"icon_adding_user"] forState:UIControlStateNormal storeImageToDisk:YES];
 	
 	// Masonry
 	_button1 = [MLBOmniButton new];
