@@ -36,6 +36,10 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 
 ![][AutoLayoutWithBadge]
 
+### Display Web Image
+
+![][AutoLayoutWithWebImage]
+
 ## Bugs
 - [x] ~~Not yet supported Masonry or NSLayoutConstraint to add Constraints, will __CRASH__!~~
 
@@ -44,7 +48,7 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 - [x] Use with Storyboards, XIBs, Code
 - [x] Can show badges
 - [ ] Design in Storyboard or XIB
-- [ ] Button's imageView support web image
+- [x] Button's imageView support web image
 
 ## Installation
 ### CocoaPods
@@ -56,7 +60,8 @@ Not yet supported.
 ### Manually
 1. Download all the files in the ``MLBOmniButton`` subdirectory.
 2. Add the source files to your Xcode project.
-3. Import ``MLBOmniButton.h``.
+3. Add ``SDWebImage``，version ~> 3.8.2.
+4. Import ``MLBOmniButton.h``.
 
 ## Requirements
 This library requires ``iOS 7.0+`` 和 ``Xcode 7.3.1+``.
@@ -105,6 +110,10 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 
 ![][AutoLayoutWithBadge]
 
+### 显示网络图片
+
+![][AutoLayoutWithWebImage]
+
 ## Bugs
 - [x] ~~还不支持 Masonry 和 NSLayoutConstant 添加约束，会 __崩溃__！~~
 
@@ -113,7 +122,7 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 - [x] 可以在 Storyboards、XIB 中使用，当然也可以通过代码创建
 - [x] 可以显示 Badges
 - [ ] 可以在 Storyboard 或者 XIB 中配置自定义属性
-- [ ] 按钮的 imageView 支持显示网络图片
+- [x] 按钮的 imageView 支持显示网络图片
 
 ## 安装
 ### CocoaPods
@@ -125,7 +134,8 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ### 手动安装
 1. 下载 MLBOmniButton 文件夹内所有源文件。
 2. 将 MLBOmniButton 文件夹内所有源文件添加（拖入）到你的工程中。
-3. 导入 ``MLBOmniButton.h``。
+3. 添加 ``SDWebImage``，版本 ~> 3.8.2。
+4. 导入 ``MLBOmniButton.h``。
 
 ## 系统要求
 该项目最低支持 ``iOS 7.0`` 和 ``Xcode 7.3.1``。
@@ -147,3 +157,4 @@ MLBOmniButton 使用 MIT 许可证，详情见 LICENSE 文件。
 [AutoLayout]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_AutoLayout.png
 [FrameWithBadge]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_Frame_with_Badge.png
 [AutoLayoutWithBadge]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_AutoLayout_with_Badge.png
+[AutoLayoutWithWebImage]: https://github.com/meilbn/MLBOmniButton/blob/master/Screenshots/Demo_AutoLayout_with_Web_Image.gif
