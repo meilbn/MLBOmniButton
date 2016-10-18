@@ -3,6 +3,6 @@ inhibit_all_warnings!
 target 'MLBOmniButtonDemo' do
   platform :ios, '7.0'
   pod 'Masonry'
-  pod 'SDWebImage'
+  pod 'SDWebImage', '~> 3.8.2'
 
 end
