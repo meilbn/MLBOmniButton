@@ -46,9 +46,9 @@ CGSizeRounded(CGSize size) {
 
 #pragma mark - Lifecycle
 
-- (void)dealloc {
-	NSLog(@"%@ - %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
-}
+//- (void)dealloc {
+//	NSLog(@"%@ - %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+//}
 
 - (instancetype)init {
 	if (self = [super init]) {
@@ -154,7 +154,7 @@ CGSizeRounded(CGSize size) {
 
 - (void)layoutSubviews {
 	[super layoutSubviews];
-	NSLog(@"%@", NSStringFromSelector(_cmd));
+//	NSLog(@"%@", NSStringFromSelector(_cmd));
 	[self mlb_buttonSizeNeedsLayout:YES];
 }
 
