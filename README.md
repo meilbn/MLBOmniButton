@@ -1,5 +1,6 @@
 # MLBOmniButton
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/meilbn/MLBOmniButton/master/LICENSE)
+[![CocoaPods](https://img.shields.io/cocoapods/v/MLBOmniButton.svg)](http://cocoapods.org/?q=MLBOmniButton)
 [![Language](https://img.shields.io/badge/language-Objective--C-brightgreen.svg)](https://developer.apple.com/swift)
 [![Platform](https://img.shields.io/badge/platform-iOS-orange.svg)](https://www.apple.com/nl/ios/)
 [![Support](https://img.shields.io/badge/support-iOS%207+%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)
@@ -49,6 +50,10 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 - [x] Can show badges
 - [ ] Design in Storyboard or XIB
 - [x] Button's imageView support web image
+
+## Version History
+- 0.0.2 removed NSLog().
+- 0.0.1 first version, contains common features.
 
 ## Installation
 ### CocoaPods
@@ -125,6 +130,10 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 - [x] 可以显示 Badges
 - [ ] 可以在 Storyboard 或者 XIB 中配置自定义属性
 - [x] 按钮的 imageView 支持显示网络图片
+
+## 版本历史
+- 0.0.2 移除 NSLog 语句。
+- 0.0.1 第一版，包含常用功能。
 
 ## 安装
 ### CocoaPods
