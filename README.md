@@ -54,7 +54,7 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ### CocoaPods
 1. Add ``pod 'MLBOmniButton'`` to your Podfile.
 2. Run ``pod install`` or ``pod update``.
-3. Import <MLBOmniButton/MLBOmniButton.h>.
+3. Import \<MLBOmniButton/MLBOmniButton.h\>.
 
 ### Carthage
 Not yet supported.
@@ -130,7 +130,7 @@ MLBOmniButton *button = [[MLBOmniButton alloc] init];
 ### CocoaPods
 1. 在 Podfile 中添加 ``pod 'MLBOmniButton'``。
 2. 执行 ``pod install`` 或 ``pod update``。
-3. 导入 <MLBOmniButton/MLBOmniButton.h>。
+3. 导入 \<MLBOmniButton/MLBOmniButton.h\>。
 
 ### Carthage
 暂未支持。
