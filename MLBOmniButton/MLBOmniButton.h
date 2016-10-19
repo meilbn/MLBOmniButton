@@ -117,7 +117,7 @@ typedef NS_ENUM(NSUInteger, MLBOmniButtonBadgePosition) {
  *  @param state            按钮状态
  *  @param storeImageToDisk 是否保存到硬盘
  */
-- (void)mlb_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholderImage forState:(UIControlState)state storeImageToDisk:(BOOL)storeImageToDisk;
+- (void)mlb_setImageWithURL:(NSURL  * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholderImage forState:(UIControlState)state storeImageToDisk:(BOOL)storeImageToDisk;
 
 @end
 
