@@ -19,7 +19,7 @@ You can specified button's size of frame:
 MLBOmniButton *button = [[MLBOmniButton alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
 ```
 
-or let them adaptive size:
+or let it adaptive size:
 
 ```
 MLBOmniButton *button = [[MLBOmniButton alloc] init];
