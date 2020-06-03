@@ -6,7 +6,7 @@
 [![Support](https://img.shields.io/badge/support-iOS%207+%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)
 
 
-** Recommend Use Swift Version: [](https://github.com/meilbn/MLButton) **
+## Recommend Use Swift Version: [](https://github.com/meilbn/MLButton)
 
 
 An Easy-to-use UIButton custom controls, including some of the common needs of the feature.
@@ -91,7 +91,7 @@ MLBOmniButton is provided under the MIT license. See LICENSE file for details.
 
 # 中文介绍
 
-** 推荐使用 Swift 版: [](https://github.com/meilbn/MLButton) **
+## 推荐使用 Swift 版: [](https://github.com/meilbn/MLButton)
 
 简单易用的 UIButton 自定义控件，包含一些常见需求的功能。
 
